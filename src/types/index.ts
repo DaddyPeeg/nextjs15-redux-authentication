@@ -15,6 +15,18 @@ export type LoginReturnType = {
   password: string | FormDataEntryValue;
 };
 
+export type CurrentAuthUserState = {
+  id: string;
+  email: string;
+  profilePicUrl: string;
+  firstName: string;
+  lastName: string;
+};
+
+export type UserProviderState = {
+  data: CurrentAuthUserState | null;
+};
+
 export const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }).trim(),
   password: z

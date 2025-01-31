@@ -3,6 +3,7 @@
 import { testUser } from "@/constants";
 import { createSession } from "@/lib/session";
 import { LoginReturnType, loginSchema } from "@/types";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function login(
@@ -11,8 +12,8 @@ export async function login(
 ): Promise<LoginReturnType> {
   const formObject = Object.fromEntries(formData);
   const result = loginSchema.safeParse(formObject);
-  console.log(prevState);
   if (!result.success) {
+    console.error("Failed to Login");
     return {
       errors: result.error.flatten().fieldErrors,
       email: formObject?.email,
@@ -24,6 +25,7 @@ export async function login(
   const { email, password } = result.data;
 
   if (email !== testUser.email || password !== testUser.password) {
+    console.error("Failed to Login");
     return {
       errors: {
         general: ["Email or Password didn't match!"],
@@ -38,4 +40,14 @@ export async function login(
   redirect("/dashboard");
 }
 
-export async function logout() {}
+export async function logout() {
+  try {
+    (await cookies()).delete("auth-session");
+    redirect("/login");
+  } catch (e: any) {
+    console.error(e.message);
+    return {
+      message: "Something went wrong",
+    };
+  }
+}
