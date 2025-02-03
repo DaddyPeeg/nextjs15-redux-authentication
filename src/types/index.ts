@@ -1,3 +1,4 @@
+import { KindePermission, KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { z } from "zod";
 
 export type SessionPayload = {
@@ -18,13 +19,20 @@ export type LoginReturnType = {
 export type CurrentAuthUserState = {
   id: string;
   email: string;
-  profilePicUrl: string;
-  firstName: string;
-  lastName: string;
+  picture: string;
+  given_name: string;
+  family_name: string;
+};
+
+export type ExtendedKindeUser = KindeUser<Record<string, any>> & {
+  perm: {
+    permissionName: string;
+    grant: KindePermission | null;
+  };
 };
 
 export type UserProviderState = {
-  data: CurrentAuthUserState | null;
+  data: ExtendedKindeUser | null;
 };
 
 export const loginSchema = z.object({
