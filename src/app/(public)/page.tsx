@@ -1,3 +1,5 @@
+import LandingPage from "@/components/pages/landing";
+
 export default function Landing() {
-  return <div className="">This is the Landing Page</div>;
+  return <LandingPage />;
 }

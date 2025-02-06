@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,10 +64,106 @@ body {
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  .check {
+    @apply border border-red-500 bg-red-500/50;
+  }
+  .specialtext {
+    font-family: "Montserrat", serif;
+    background: rgb(255, 255, 255);
+    background: -moz-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(97, 97, 97, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(97, 97, 97, 1) 100%
+    );
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(97, 97, 97, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#616161",GradientType=1);
+    @apply text-transparent bg-clip-text;
+  }
+}
+
+.gradient-bg-slider-title {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.2) 85%
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.2) 85%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.2) 85%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+  backdrop-filter: blur(4px);
+}
+
+.radio-input input {
+  display: none;
+}
+
+.radio-input {
+  --container_width: 600px;
+  --gap_size: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 9999px;
+  width: var(--container_width);
+  overflow: hidden;
+  gap: var(--gap_size);
+}
+
+.radio-input label {
+  width: 100%;
+
+  /* padding: 2px; */
+  height: 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  border-radius: 9999px;
+  background-color: white;
+}
+.selection {
+  display: none;
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  transition: 0.15s ease;
+  background-color: rgb(14, 14, 14);
+  /* border: 1px solid white; */
+  display: inline-block;
 }
