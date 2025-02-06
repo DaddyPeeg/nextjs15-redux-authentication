@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --loader-value {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -166,4 +172,54 @@ body {
   background-color: rgb(14, 14, 14);
   /* border: 1px solid white; */
   display: inline-block;
+}
+
+.loader-div {
+  background: rgb(226, 226, 226);
+  background: -moz-linear-gradient(
+    90deg,
+    rgba(226, 226, 226, 1) 0%,
+    rgb(240, 240, 240) calc(var(--loader-value) * 1%),
+    rgba(226, 226, 226, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(226, 226, 226, 1) 0%,
+    rgb(240, 240, 240) calc(var(--loader-value) * 1%),
+    rgba(226, 226, 226, 1) 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(226, 226, 226, 1) 0%,
+    rgb(240, 240, 240) calc(var(--loader-value) * 1%),
+    rgba(226, 226, 226, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e2e2e2",endColorstr="#e2e2e2",GradientType=1);
+  animation: vibrance_animation 5s linear infinite;
+}
+
+@keyframes vibrance_animation {
+  0% {
+    --loader-value: -20;
+  }
+  50% {
+    --loader-value: 120;
+  }
+  100% {
+    --loader-value: -20;
+  }
+}
+
+.blured-image {
+  transition: filter 0.3s ease;
+  filter: blur(5px);
+}
+
+.blured-image:hover {
+  filter: blur(0);
+  z-index: 100;
+}
+
+.blured-image:hover ~ .blured-image {
+  filter: blur(5px);
 }
