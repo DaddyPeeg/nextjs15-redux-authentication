@@ -2,6 +2,8 @@
 
 #### A Modern and Scalable Church Website with CMS Capabilities
 
+Things to do:
+
 - [x] Setup Folder Structure Architecture
 - [x] Setup Auth using Kinde
 - [x] Integrate Database using Neon and Drizzle ORM
