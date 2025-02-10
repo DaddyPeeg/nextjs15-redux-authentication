@@ -11,5 +11,5 @@ Things to do:
 - [x] Navigation
 - [x] Hero Section Slider
 - [x] Statement of Faith Section
-- [ ] Testimonies Section
+- [x] Testimonies Section
 - [ ] Feature Section
