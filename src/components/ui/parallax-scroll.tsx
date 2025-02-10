@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import ImageWithLoader from "../ImageWithLoader";
+import { useEffect, useRef, useState } from "react";
 
 export const ParallaxScroll = ({
   images,
@@ -12,8 +13,24 @@ export const ParallaxScroll = ({
   images: string[];
   className?: string;
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState<[`${number}px start`, "end end"]>([
+    "200px start",
+    "end end",
+  ]);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const distanceFromTop = rect.top + window.scrollY;
+      setOffset([`${distanceFromTop}px start`, "end end"]);
+    }
+  }, []);
+
+  console.log(offset);
+
   const { scrollYProgress } = useScroll({
-    offset: ["200vh start", "end end"],
+    offset: offset,
   });
 
   const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -400]);
@@ -27,7 +44,10 @@ export const ParallaxScroll = ({
   const thirdPart = images.slice(2 * third);
 
   return (
-    <div className={cn("items-start overflow-y-visible w-full", className)}>
+    <div
+      className={cn("items-start overflow-y-visible w-full", className)}
+      ref={containerRef}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start max-w-5xl mx-auto gap-10 py-0 px-0 group">
         <div className="grid gap-10 ">
           {firstPart.map((el, idx) => {

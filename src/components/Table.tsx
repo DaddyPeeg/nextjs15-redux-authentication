@@ -45,15 +45,16 @@ const scheduleData = [
 
 export function WeekScheduleComp() {
   return (
-    <div>
-      <div className="container mx-auto p-6">
+    <div className="relative flex flex-col items-start h-full overflow-hidden">
+      <div className="absolute h-full w-24 pointer-events-none bg-gradient-to-l from-neutral-100 to-transparent right-0 z-10" />
+      <div className="p-6 pb-0 z-20">
         <h1 className="text-4xl font-bold text-primary">Weekly Schedule</h1>
         <h3 className="text-base">
           {"Stay Connected: Join Us for Worship and Fellowship every Week"}
         </h3>
-        <div className="w-full mt-6 mx-auto bg-white p-8 rounded-xl shadow-2xl">
-          <WeeklySchedule />
-        </div>
+      </div>
+      <div className="w-full mt-6 mx-auto bg-transparent p-6 pt-0">
+        <WeeklySchedule />
       </div>
     </div>
   );

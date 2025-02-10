@@ -122,6 +122,11 @@ const Header = () => {
 
     return () => {
       controller.abort();
+      if (sections) {
+        sections.forEach((section) => {
+          observer.unobserve(section);
+        });
+      }
     };
   }, []);
 

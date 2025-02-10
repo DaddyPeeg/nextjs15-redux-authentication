@@ -63,9 +63,6 @@ const StatementOfFaith = () => {
             <h3 className="text-xl">Our Core Beliefs: A Foundation of Faith</h3>
 
             <div className="mt-4 isolate w-full rounded-3xl relative overflow-hidden ">
-              {/* <div className="absolute h-full w-full -z-[1] top-0 left-0">
-                <ImageWithLoader src="/stone-tablet.png" alt="stone-tablet" />
-              </div> */}
               <p className="text-4xl font-bold leading-relaxed font-caveat ">
                 We believe in{" "}
                 <span className="text-neutral-500 font-bold">one God</span>,
