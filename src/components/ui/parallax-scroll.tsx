@@ -13,7 +13,7 @@ export const ParallaxScroll = ({
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll({
-    offset: ["100vh start", "end end"],
+    offset: ["200vh start", "end end"],
   });
 
   const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -400]);

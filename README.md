@@ -12,4 +12,4 @@ Things to do:
 - [x] Hero Section Slider
 - [x] Statement of Faith Section
 - [ ] Testimonies Section
-- [ ] Prayer Request Section
+- [ ] Feature Section

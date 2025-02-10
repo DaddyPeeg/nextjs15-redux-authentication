@@ -15,6 +15,11 @@ const navigation = [
     icon: FaSearch,
   },
   {
+    label: "Feature",
+    link: "#feature",
+    icon: FaPrayingHands,
+  },
+  {
     label: "Statement of Faith",
     link: "#statement_of_faith",
     icon: FaCross,
@@ -23,11 +28,6 @@ const navigation = [
     label: "Testimonies",
     link: "#testimonies",
     icon: BsChatRightDotsFill,
-  },
-  {
-    label: "Prayer Request",
-    link: "#prayer_request",
-    icon: FaPrayingHands,
   },
 ];
 

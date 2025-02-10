@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import StatementOfFaith from "./StatementOfFaith";
 import Testimonies from "./Testimonies";
-import PrayerRequest from "./PrayerRequest";
+import Feature from "./Feature";
 
 type Props = {};
 
@@ -14,9 +14,9 @@ const LandingPage = () => {
       <Header />
       <main>
         <Hero />
+        <Feature />
         <StatementOfFaith />
         <Testimonies />
-        <PrayerRequest />
       </main>
       <Footer />
     </div>
