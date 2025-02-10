@@ -83,7 +83,7 @@ const Header = () => {
           }
         });
       },
-      { root: null, rootMargin: "0px", threshold: 0.5 }
+      { root: null, rootMargin: "0px", threshold: 0.1 }
     );
 
     sections.forEach((section) => {

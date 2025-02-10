@@ -3,15 +3,17 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 interface ImageProps {
   src: string;
   alt: string;
   width?: string;
   height?: string;
+  className?: string;
 }
 
-const ImageWithLoader: React.FC<ImageProps> = ({ src, alt }) => {
+const ImageWithLoader: React.FC<ImageProps> = ({ src, alt, className }) => {
   const [loading, setLoading] = useState(true);
 
   const handleImageLoad = () => {
@@ -19,7 +21,7 @@ const ImageWithLoader: React.FC<ImageProps> = ({ src, alt }) => {
   };
 
   return (
-    <div className="w-full h-full relative">
+    <div className={cn("w-full h-full relative", className)}>
       {loading && <div className="size-full loader-div" />}
       <Image
         src={src}

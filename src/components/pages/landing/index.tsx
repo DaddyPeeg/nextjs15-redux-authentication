@@ -16,12 +16,12 @@ const LandingPage = () => {
         <section
           data-landing-sections
           id="testimonies"
-          className="h-screen w-full"
+          className="h-screen w-full bg-red-500"
         ></section>
         <section
           data-landing-sections
           id="prayer_request"
-          className="h-screen w-full"
+          className="h-screen w-full bg-green-500"
         ></section>
       </main>
       <Footer />
