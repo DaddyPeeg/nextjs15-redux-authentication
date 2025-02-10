@@ -36,7 +36,7 @@ export const ParallaxScroll = ({
               <motion.div style={{ y: translateFirst }} key={"grid-1" + idx}>
                 <div
                   className={cn(
-                    "h-80 w-full object-cover object-left-top rounded-lg overflow-hidden gap-10 !m-0 !p-0 transition duration-500 group-hover:blur-sm group-hover:hover:blur-none",
+                    "h-80 w-full object-cover object-left-top rounded-lg overflow-hidden gap-10 !m-0 !p-0 transition duration-500 group-hover:blur-sm group-hover:hover:blur-none hover:scale-105",
                     { "blur-sm": shouldBlur }
                   )}
                 >
@@ -53,7 +53,7 @@ export const ParallaxScroll = ({
               <motion.div style={{ y: translateSecond }} key={"grid-2" + idx}>
                 <div
                   className={cn(
-                    "h-80 w-full object-cover object-left-top rounded-lg overflow-hidden gap-10 !m-0 !p-0 transition duration-500 group-hover:blur-sm group-hover:hover:blur-none",
+                    "h-80 w-full object-cover object-left-top rounded-lg overflow-hidden gap-10 !m-0 !p-0 transition duration-500 group-hover:blur-sm group-hover:hover:blur-none hover:scale-105",
                     { "blur-sm": shouldBlur }
                   )}
                 >
@@ -70,7 +70,7 @@ export const ParallaxScroll = ({
               <motion.div style={{ y: translateThird }} key={"grid-3" + idx}>
                 <div
                   className={cn(
-                    "h-80 w-full object-cover object-left-top rounded-lg overflow-hidden gap-10 !m-0 !p-0 transition duration-500 group-hover:blur-sm group-hover:hover:blur-none",
+                    "h-80 w-full object-cover object-left-top rounded-lg overflow-hidden gap-10 !m-0 !p-0 transition duration-500 group-hover:blur-sm group-hover:hover:blur-none hover:scale-105",
                     { "blur-sm": shouldBlur }
                   )}
                 >

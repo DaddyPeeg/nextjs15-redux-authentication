@@ -83,7 +83,7 @@ const Header = () => {
           }
         });
       },
-      { root: null, rootMargin: "0px", threshold: 0.1 }
+      { root: null, rootMargin: "0px", threshold: 0.5 }
     );
 
     sections.forEach((section) => {
@@ -102,9 +102,11 @@ const Header = () => {
 
         if (shouldAddClass && !isClassAdded) {
           header?.classList.add("bg-neutral-900");
+          header?.classList.add("shadow-xl");
           isClassAdded = true;
         } else if (!shouldAddClass && isClassAdded) {
           header?.classList.remove("bg-neutral-900");
+          header?.classList.remove("shadow-xl");
           isClassAdded = false;
         }
       };
@@ -151,10 +153,10 @@ const Header = () => {
 
   return (
     <section
-      className="fixed z-50 left-1/2 backdrop-blur-sm -translate-x-1/2 top-0 w-full transition-colors duration-500"
+      className="fixed z-[999] left-1/2 backdrop-blur-sm -translate-x-1/2 top-0 w-full transition-colors duration-500"
       id="header-comp"
     >
-      <header className=" flex items-center top-0 w-full py-6 px-4 z-10 text-white max-w-[120rem] mx-auto justify-between">
+      <header className=" flex items-center top-0 w-full py-6 px-4 z-10 text-white max-w-[110rem] mx-auto justify-between ">
         <Link
           className="flex items-center gap-2 cursor-pointer"
           href={"/#explore"}

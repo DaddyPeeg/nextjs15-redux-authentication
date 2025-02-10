@@ -98,7 +98,7 @@ const Hero = () => {
     <section
       id="explore"
       data-landing-sections
-      className="h-screen relative w-full"
+      className="h-screen relative w-full shadow-lg"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -114,7 +114,7 @@ const Hero = () => {
           <ImageLoading key={slide.title} alt={slide.title} src={slide.image} />
         </motion.div>
       </AnimatePresence>
-      <div className="absolute left-1/2 bottom-8 -translate-x-1/2">
+      <div className="absolute left-1/2 bottom-8 -translate-x-1/2 z-50">
         <div className="radio-input">
           {slides.map((items, index) => {
             return (
@@ -134,7 +134,7 @@ const Hero = () => {
             style={{
               width: `calc((var(--container_width) - (var(--gap_size) * ${
                 slides.length - 1
-              })) / ${slides.length} + 2px)`,
+              })) / ${slides.length})`,
               transform: `translateX(calc(((var(--container_width) - (var(--gap_size) * ${
                 slides.length - 1
               })) / ${slides.length} + var(--gap_size)) * ${currentSlide}))`,

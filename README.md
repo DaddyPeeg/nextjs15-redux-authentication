@@ -10,6 +10,6 @@ Things to do:
 - [x] Initialize Redux as State Manager
 - [x] Navigation
 - [x] Hero Section Slider
-- [ ] Statement of Faith Section
+- [x] Statement of Faith Section
 - [ ] Testimonies Section
 - [ ] Prayer Request Section

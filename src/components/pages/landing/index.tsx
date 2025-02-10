@@ -3,6 +3,8 @@ import Hero from "./Hero";
 import Footer from "./Footer";
 import Header from "./Header";
 import StatementOfFaith from "./StatementOfFaith";
+import Testimonies from "./Testimonies";
+import PrayerRequest from "./PrayerRequest";
 
 type Props = {};
 
@@ -13,16 +15,8 @@ const LandingPage = () => {
       <main>
         <Hero />
         <StatementOfFaith />
-        <section
-          data-landing-sections
-          id="testimonies"
-          className="h-screen w-full bg-red-500"
-        ></section>
-        <section
-          data-landing-sections
-          id="prayer_request"
-          className="h-screen w-full bg-green-500"
-        ></section>
+        <Testimonies />
+        <PrayerRequest />
       </main>
       <Footer />
     </div>
