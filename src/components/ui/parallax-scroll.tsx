@@ -27,8 +27,6 @@ export const ParallaxScroll = ({
     }
   }, []);
 
-  console.log(offset);
-
   const { scrollYProgress } = useScroll({
     offset: offset,
   });

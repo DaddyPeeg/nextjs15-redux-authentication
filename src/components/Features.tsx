@@ -75,15 +75,15 @@ export const SkeletonThree = () => {
         fill
         className="size-full object-cover brightness-[0.3] blur-sm"
       />
-      <div className="p-8 w-full z-20">
-        <h1 className="text-4xl font-bold">
+      <div className="p-2 lg:p-8 w-full z-20">
+        <h1 className="text-xl lg:text-4xl font-bold">
           {"Workshops for Spiritual Growth & Empowerment"}
         </h1>
-        <h3 className="text-base">
+        <h3 className="text-xs lg:text-base">
           {"Equip, Empower, and Grow Through Our Transformative Workshops"}
         </h3>
       </div>
-      <div className="p-8 pt-0 w-full z-20">
+      <div className="p-2 lg:p-8 mt-2 md:mt-0 pt-0 w-full z-20">
         {isClient && (
           <Video src="https://youtu.be/gulSCjasW3g?si=si3U1xe-6NZj_0gT" />
         )}
@@ -114,7 +114,7 @@ export const SkeletonTwo = () => {
     },
   };
   return (
-    <div className="relative flex flex-col bg-neutral-900 text-white items-start h-full overflow-hidden">
+    <div className="relative flex flex-col bg-neutral-900 text-white items-start min-h-[22rem] h-full overflow-hidden">
       <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-r from-neutral-900 to-transparent left-0 z-10" />
       <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-l from-neutral-900 to-transparent right-0 z-10" />
       <Image
@@ -123,9 +123,11 @@ export const SkeletonTwo = () => {
         fill
         className="size-full object-cover brightness-75 blur-sm"
       />
-      <div className="z-20 p-6">
-        <h1 className="text-4xl font-bold">{"Be a part of our Cell-Group"}</h1>
-        <h3 className="text-base">
+      <div className="z-20 p-2 lg:p-6">
+        <h1 className="text-xl lg:text-4xl font-bold">
+          {"Be a part of our Cell-Group"}
+        </h1>
+        <h3 className="text-xs lg:text-base">
           {
             "Meet Our Cell Group Leaders and Experience Life-Changing Faith and Fellowship"
           }
@@ -186,9 +188,9 @@ export const SkeletonTwo = () => {
 export const SkeletonFour = () => {
   return (
     <div className="relative flex flex-col items-start h-full overflow-hidden">
-      <div className="p-8 z-20">
-        <h1 className="text-4xl font-bold">{"Upcoming Events"}</h1>
-        <h3 className="text-base">
+      <div className="p-2 lg:p-8 z-20">
+        <h1 className="text-xl lg:text-4xl font-bold">{"Upcoming Events"}</h1>
+        <h3 className="text-xs lg:text-base">
           {
             "Look forward to impactful gatherings that connect and reach more people with God’s love."
           }

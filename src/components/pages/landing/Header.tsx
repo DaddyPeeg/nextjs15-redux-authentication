@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { FaCross, FaPrayingHands, FaSearch } from "react-icons/fa";
+import { FaCross, FaHamburger, FaPrayingHands, FaSearch } from "react-icons/fa";
 import { BsChatRightDotsFill } from "react-icons/bs";
 import { cn, debounce } from "@/lib/utils";
 import Image from "next/image";
+import { Menu } from "lucide-react";
 
 const navigation = [
   {
@@ -173,7 +174,7 @@ const Header = () => {
           href={"/#explore"}
           onClick={() => selectNav("Explore", 0)}
         >
-          <div className="relative size-16 rounded-full">
+          <div className="relative size-10 lg:size-16 rounded-full">
             <Image
               src="/icons/cfc-logo.png"
               alt="g12-icon"
@@ -182,7 +183,7 @@ const Header = () => {
               className="size-full object-contain"
             />
           </div>
-          <div className="relative size-16">
+          <div className="relative size-10 lg:size-16">
             <Image
               src="/icons/g12-logo.png"
               alt="g12-icon"
@@ -193,7 +194,8 @@ const Header = () => {
           </div>
         </Link>
         <nav>
-          <ul className="flex relative">
+          <Menu className="lg:hidden block" />
+          <ul className="hidden relative lg:flex">
             <div
               className="absolute bg-white top-0 left-0 h-full rounded-full -z-10 transition"
               style={{
@@ -228,7 +230,7 @@ const Header = () => {
             })}
           </ul>
         </nav>
-        <div>
+        <div className="hidden lg:block">
           <Button
             size={"lg"}
             variant={"ghost"}

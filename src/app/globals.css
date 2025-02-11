@@ -146,6 +146,20 @@ body {
   gap: var(--gap_size);
 }
 
+@media screen and (max-width: 768px) {
+  .radio-input {
+    --container_width: 400px;
+    --gap_size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .radio-input {
+    --container_width: 300px;
+    --gap_size: 8px;
+  }
+}
+
 .radio-input label {
   width: 100%;
 
@@ -224,7 +238,7 @@ body {
 
 .parallax {
   background-image: url("/testimonial.webp");
-  height: 100vh;
+  height: 200vh;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

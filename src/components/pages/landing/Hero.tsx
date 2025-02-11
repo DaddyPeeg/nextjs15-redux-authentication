@@ -142,11 +142,11 @@ const Hero = () => {
           />
         </div>
       </div>
-      <div className="absolute  text-white p-14 top-[calc(50%+12rem)] -translate-y-1/2 rounded-r-xl rounded-br-xl ">
-        <div className=" rounded-xl p-14 ">
-          <div className="overflow-hidden ">
+      <div className="absolute  text-white p-2 lg:p-14 top-[calc(50%+12rem)] -translate-y-1/2 rounded-r-xl rounded-br-xl">
+        <div className=" rounded-xl p-2 lg:p-14">
+          <div className="overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.h2
+              <motion.h1
                 initial={{
                   translateY: 50,
                   opacity: 0,
@@ -163,39 +163,61 @@ const Hero = () => {
                   duration: 1,
                   ease: "easeInOut",
                 }}
-                className="text-[7rem] leading-tight text-nowrap font-bold specialtext font-montserrat"
+                className="text-2xl lg:text-7xl tracking-tighter leading-tight text-nowrap font-bold specialtext font-montserrat"
                 key={slide.title}
               >
                 {slide.title}
-              </motion.h2>
+              </motion.h1>
             </AnimatePresence>
           </div>
           <div className="overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.p
+                className="text-xs lg:text-xl w-full max-w-[20rem] lg:max-w-[40rem]"
                 initial={{
-                  translateX: -1000,
+                  y: 20,
                   opacity: 0,
                 }}
                 animate={{
-                  translateX: 0,
+                  y: 0,
                   opacity: 1,
                   transition: {
-                    delay: 1,
-                    duration: 1,
+                    delay: 1.5,
                   },
                 }}
                 exit={{
-                  translateX: -1000,
+                  y: -20,
                   opacity: 0,
-                  transition: {
-                    duration: 0.5,
-                  },
                 }}
-                className="text-[2rem] font-medium max-w-xl mt-0 w-full bg-neutral-900/50 backdrop-blur-sm px-12 py-6  border-l-8 rounded-r-xl"
+                transition={{
+                  duration: 0.2,
+                  ease: "easeInOut",
+                }}
                 key={slide.title}
               >
-                {slide.description}
+                {slide.description.split(" ").map((word, index) => (
+                  <motion.span
+                    key={`des-${index}`}
+                    initial={{
+                      filter: "blur(10px)",
+                      opacity: 0,
+                      y: 5,
+                    }}
+                    animate={{
+                      filter: "blur(0px)",
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                      delay: 1.5 + 0.02 * index,
+                    }}
+                    className="inline-block "
+                  >
+                    {word}&nbsp;
+                  </motion.span>
+                ))}
               </motion.p>
             </AnimatePresence>
           </div>

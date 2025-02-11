@@ -47,13 +47,15 @@ export function WeekScheduleComp() {
   return (
     <div className="relative flex flex-col items-start h-full overflow-hidden">
       {/* <div className="absolute h-full w-24 pointer-events-none bg-gradient-to-l from-neutral-100 to-transparent right-0 z-10" /> */}
-      <div className="p-6 pb-0 z-20">
-        <h1 className="text-4xl font-bold text-primary">Weekly Schedule</h1>
-        <h3 className="text-base">
+      <div className="p-2 lg:p-6 pb-0 z-20">
+        <h1 className="text-xl lg:text-4xl font-bold text-primary">
+          Weekly Schedule
+        </h1>
+        <h3 className="text-xs lg:text-base">
           {"Stay Connected: Join Us for Worship and Fellowship every Week"}
         </h3>
       </div>
-      <div className="w-full mt-6 mx-auto bg-transparent p-6 pt-0">
+      <div className="w-full mt-2 lg:mt-6 mx-auto bg-transparent p-0 lg:p-6 pt-0">
         <WeeklySchedule />
       </div>
     </div>
@@ -62,7 +64,7 @@ export function WeekScheduleComp() {
 
 function WeeklySchedule() {
   return (
-    <div className="p-8 rounded-lg bg-gradient-to-br from-blue-100 via-violet-500/50 to-red-500/30">
+    <div className="p-2 lg:p-8 rounded-lg bg-gradient-to-br from-blue-100 via-violet-500/50 to-red-500/30">
       <div className="rounded-lg overflow-hidden border bg-neutral-50 border-neutral-300 shadow-sm">
         <Table>
           <TableHeader>

@@ -56,14 +56,17 @@ const StatementOfFaith = () => {
       className="w-full min-h-screen bg-neutral-100 scroll-mt-[6rem]"
     >
       <AuroraBackground>
-        <div className="w-full py-8 max-w-[110rem] gap-16 flex px-4 mx-auto relative">
+        <div className="w-full py-8 max-w-[110rem] gap-2 lg:gap-16 flex px-4 lg:flex-row flex-col mx-auto relative">
           <div className="bg-neutral-900/30 w-[60rem] h-full absolute blur-[10rem] rounded-full right-0" />
-          <div className="w-full max-w-xl">
-            <h1 className="text-6xl font-bold">Statement of Faith</h1>
-            <h3 className="text-xl">Our Core Beliefs: A Foundation of Faith</h3>
-
+          <div className="w-full max-w-xl text-center mx-auto">
+            <h1 className="text-2xl lg:text-6xl font-bold">
+              Statement of Faith
+            </h1>
+            <h3 className="text-base lg:text-xl">
+              Our Core Beliefs: A Foundation of Faith
+            </h3>
             <div className="mt-4 isolate w-full rounded-3xl relative overflow-hidden ">
-              <p className="text-4xl font-bold leading-relaxed font-caveat ">
+              <p className="text-2xl lg:text-4xl font-bold leading-relaxed font-caveat ">
                 We believe in{" "}
                 <span className="text-neutral-500 font-bold">one God</span>,
                 eternally existing in three persons:{" "}
@@ -89,44 +92,47 @@ const StatementOfFaith = () => {
                 holiness, and obedience to His Word.
               </p>
             </div>
-            <Button className="mt-8 flex text-lg py-8" size={"lg"}>
+            <Button
+              className="mt-4 mx-auto lg:mt-8 flex text-xs lg:text-lg lg:py-8"
+              size={"sm"}
+            >
               Learn More
               <ArrowRight className="shrink-0 ml-1" />
             </Button>
           </div>
-          <div className="flex-1 relative isolate">
+          <div className="flex-1 relative isolate lg:block hidden">
             <ParallaxScrollDemo />
           </div>
         </div>
       </AuroraBackground>
-      <div className="w-full max-w-7xl mx-auto py-24 flex flex-col">
-        <h1 className="text-center font-bold text-5xl bg-black tracking-tighter font-montserrat text-white px-4 py-2 mx-auto">
+      <div className="w-full max-w-7xl mx-auto py-8 lg:py-24 flex flex-col">
+        <h1 className="text-center font-bold text-2xl lg:text-5xl bg-black tracking-tighter font-montserrat text-white px-4 py-2 mx-auto">
           {"what's next?"}
         </h1>
-        <h3 className="text-center text-2xl">
+        <h3 className="text-center text-lg lg:text-2xl px-8">
           Know more about who Jesus is and tell others about Him.
         </h3>
-        <div className="gap-4 flex mt-8 px-24">
+        <div className="gap-4 flex lg:flex-row flex-col mt-8 px-24">
           <div className="flex-1 flex-col">
             <Button
-              className="w-full text-lg border-primary border-2 bg-transparent"
+              className="w-full text-xs lg:text-lg border-primary border-2 bg-transparent"
               variant={"outline"}
             >
               GROW
             </Button>
-            <p className="text-center mt-4 w-full max-w-80 mx-auto">
+            <p className="text-center text-xs lg:text-base mt-4 w-full max-w-80 mx-auto">
               Know more about God by accessing helpful materials designed to
               answer your questions and give you a broader sense of who He is.
             </p>
           </div>
           <div className="flex-1 flex-col">
             <Button
-              className="w-full text-lg border-primary border-2 bg-transparent"
+              className="w-full text-xs lg:text-lg border-primary border-2 bg-transparent"
               variant={"outline"}
             >
               JOIN A COMMUNITY
             </Button>
-            <p className="text-center mt-4 w-full max-w-80 mx-auto">
+            <p className="text-center mt-4 text-xs lg:text w-full max-w-80 mx-auto">
               Join the community and enjoy the fellowship and growth that comes
               with being with other Christ-committed followers.
             </p>
