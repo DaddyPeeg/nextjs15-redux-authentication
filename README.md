@@ -12,5 +12,7 @@ Things to do:
 - [x] Hero Section Slider
 - [x] Statement of Faith Section
 - [x] Testimonies Section
-- [x] Feature Section
-- [ ] Landing Page Mobile Responsiveness
+- Landing Page Responsiveness
+  - [x] Mobile
+  - [ ] Tablet
+  - [x] Desktop
