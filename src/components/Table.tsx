@@ -47,7 +47,7 @@ export function WeekScheduleComp() {
   return (
     <div className="relative flex flex-col items-start h-full overflow-hidden">
       {/* <div className="absolute h-full w-24 pointer-events-none bg-gradient-to-l from-neutral-100 to-transparent right-0 z-10" /> */}
-      <div className="p-2 lg:p-6 pb-0 z-20">
+      <div className="p-2 lg:p-6 lg:pb-0 z-20">
         <h1 className="text-xl lg:text-4xl font-bold text-primary">
           Weekly Schedule
         </h1>
@@ -55,7 +55,7 @@ export function WeekScheduleComp() {
           {"Stay Connected: Join Us for Worship and Fellowship every Week"}
         </h3>
       </div>
-      <div className="w-full mt-2 lg:mt-6 mx-auto bg-transparent p-0 lg:p-6 pt-0">
+      <div className="w-full mt-2 lg:mt-0 mx-auto bg-transparent p-0 lg:p-6 pt-0">
         <WeeklySchedule />
       </div>
     </div>

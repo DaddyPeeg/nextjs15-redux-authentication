@@ -58,7 +58,7 @@ const StatementOfFaith = () => {
       <AuroraBackground>
         <div className="w-full py-8 max-w-[110rem] gap-2 lg:gap-16 flex px-4 lg:flex-row flex-col mx-auto relative">
           <div className="bg-neutral-900/30 w-[60rem] h-full absolute blur-[10rem] rounded-full right-0" />
-          <div className="w-full max-w-xl text-center mx-auto">
+          <div className="w-full max-w-xl text-center lg:text-start mx-auto">
             <h1 className="text-2xl lg:text-6xl font-bold">
               Statement of Faith
             </h1>
@@ -66,7 +66,7 @@ const StatementOfFaith = () => {
               Our Core Beliefs: A Foundation of Faith
             </h3>
             <div className="mt-4 isolate w-full rounded-3xl relative overflow-hidden ">
-              <p className="text-2xl lg:text-4xl font-bold leading-relaxed font-caveat ">
+              <p className="text-2xl lg:text-4xl font-bold leading-relaxed lg:leading-normal font-caveat ">
                 We believe in{" "}
                 <span className="text-neutral-500 font-bold">one God</span>,
                 eternally existing in three persons:{" "}
@@ -93,7 +93,7 @@ const StatementOfFaith = () => {
               </p>
             </div>
             <Button
-              className="mt-4 mx-auto lg:mt-8 flex text-xs lg:text-lg lg:py-8"
+              className="mt-4 mx-auto lg:mx-0 lg:mt-8 flex text-xs lg:text-lg lg:py-8 lg:px-8"
               size={"sm"}
             >
               Learn More

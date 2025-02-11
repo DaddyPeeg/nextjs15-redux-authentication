@@ -15,7 +15,7 @@ const Feature = () => {
       <div className="w-full max-w-[110rem] flex px-4 mx-auto relative ">
         <FeaturesSectionDemo />
       </div>
-      <h1 className="text-center w-full max-w-6xl leading-normal mx-auto text-4xl lg:text-6xl font-caveat py-4 lg:py-24">
+      <h1 className="text-center w-full max-w-6xl mx-auto text-4xl lg:text-6xl leading-normal font-caveat py-4 lg:py-24 tracking-tight lg:leading-normal">
         Come as you are. Find hope, love, and purpose in
         <br />
         <span className="bg-black text-white px-4">Christ.</span>
