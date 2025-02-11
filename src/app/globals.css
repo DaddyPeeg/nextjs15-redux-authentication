@@ -221,3 +221,12 @@ body {
 .blured-image:hover ~ .blured-image {
   filter: blur(5px);
 }
+
+.parallax {
+  background-image: url("/testimonial.webp");
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: grayscale(100%) brightness(50%);
+}

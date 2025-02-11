@@ -14,7 +14,7 @@ interface VideoProps {
 
 const Video: React.FC<VideoProps> = ({
   src,
-  thumbnailQuality = "maxresdefault",
+  thumbnailQuality = "sddefault",
   className = "",
 }) => {
   const [isLoading, setIsLoading] = useState(true);

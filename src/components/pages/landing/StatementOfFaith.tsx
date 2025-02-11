@@ -56,7 +56,7 @@ const StatementOfFaith = () => {
       className="w-full min-h-screen bg-neutral-100 scroll-mt-[6rem]"
     >
       <AuroraBackground>
-        <div className="w-full py-24 max-w-[110rem] gap-16 flex px-4 mx-auto relative">
+        <div className="w-full py-8 max-w-[110rem] gap-16 flex px-4 mx-auto relative">
           <div className="bg-neutral-900/30 w-[60rem] h-full absolute blur-[10rem] rounded-full right-0" />
           <div className="w-full max-w-xl">
             <h1 className="text-6xl font-bold">Statement of Faith</h1>
@@ -99,6 +99,40 @@ const StatementOfFaith = () => {
           </div>
         </div>
       </AuroraBackground>
+      <div className="w-full max-w-7xl mx-auto py-24 flex flex-col">
+        <h1 className="text-center font-bold text-5xl bg-black tracking-tighter font-montserrat text-white px-4 py-2 mx-auto">
+          {"what's next?"}
+        </h1>
+        <h3 className="text-center text-2xl">
+          Know more about who Jesus is and tell others about Him.
+        </h3>
+        <div className="gap-4 flex mt-8 px-24">
+          <div className="flex-1 flex-col">
+            <Button
+              className="w-full text-lg border-primary border-2 bg-transparent"
+              variant={"outline"}
+            >
+              GROW
+            </Button>
+            <p className="text-center mt-4 w-full max-w-80 mx-auto">
+              Know more about God by accessing helpful materials designed to
+              answer your questions and give you a broader sense of who He is.
+            </p>
+          </div>
+          <div className="flex-1 flex-col">
+            <Button
+              className="w-full text-lg border-primary border-2 bg-transparent"
+              variant={"outline"}
+            >
+              JOIN A COMMUNITY
+            </Button>
+            <p className="text-center mt-4 w-full max-w-80 mx-auto">
+              Join the community and enjoy the fellowship and growth that comes
+              with being with other Christ-committed followers.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

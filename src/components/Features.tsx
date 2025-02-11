@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -45,20 +45,8 @@ export function FeaturesSectionDemo() {
   ];
   return (
     <div className="relative z-20 w-full">
-      <div className="px-8">
-        <h1 className="text-3xl lg:text-6xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-bold text-black dark:text-white">
-          {"Church Life & Events"}
-        </h1>
-
-        <p className="text-sm lg:text-xl max-w-2xl mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
-          {
-            "Stay Engaged with Our Weekly Gatherings, Special Events, and Community Activities"
-          }
-        </p>
-      </div>
-
       <div className="relative">
-        <div className="grid grid-cols-1 lg:grid-cols-6 mt-12 xl:border rounded-md dark:border-neutral-800 bg-gradient-to-br from-neutral-200/10 via-neutral-200/50 to-neutral-400/20">
+        <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md ">
           {features.map((feature, index) => (
             <div
               key={`feature-${index}`}
@@ -74,9 +62,20 @@ export function FeaturesSectionDemo() {
 }
 
 export const SkeletonThree = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    if (!isClient) setIsClient(true);
+  }, []);
   return (
-    <div className="relative flex flex-col items-start h-full overflow-hidden">
-      <div className="p-6 w-full z-20">
+    <div className="relative flex bg-neutral-900 text-white flex-col items-start h-full overflow-hidden">
+      <Image
+        src={"/feature3.webp"}
+        alt="feature2-image"
+        fill
+        className="size-full object-cover brightness-[0.3] blur-sm"
+      />
+      <div className="p-8 w-full z-20">
         <h1 className="text-4xl font-bold">
           {"Workshops for Spiritual Growth & Empowerment"}
         </h1>
@@ -84,8 +83,10 @@ export const SkeletonThree = () => {
           {"Equip, Empower, and Grow Through Our Transformative Workshops"}
         </h3>
       </div>
-      <div className="p-6 pt-0 w-full z-20">
-        <Video src="https://youtu.be/gulSCjasW3g?si=si3U1xe-6NZj_0gT" />
+      <div className="p-8 pt-0 w-full z-20">
+        {isClient && (
+          <Video src="https://youtu.be/gulSCjasW3g?si=si3U1xe-6NZj_0gT" />
+        )}
       </div>
     </div>
   );
@@ -113,9 +114,15 @@ export const SkeletonTwo = () => {
     },
   };
   return (
-    <div className="relative flex flex-col items-start h-full overflow-hidden">
-      <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-r from-neutral-100 to-transparent left-0 z-10" />
-      <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-l from-neutral-100 to-transparent right-0 z-10" />
+    <div className="relative flex flex-col bg-neutral-900 text-white items-start h-full overflow-hidden">
+      <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-r from-neutral-900 to-transparent left-0 z-10" />
+      <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-l from-neutral-900 to-transparent right-0 z-10" />
+      <Image
+        src={"/feature2.webp"}
+        alt="feature2-image"
+        fill
+        className="size-full object-cover brightness-75 blur-sm"
+      />
       <div className="z-20 p-6">
         <h1 className="text-4xl font-bold">{"Be a part of our Cell-Group"}</h1>
         <h3 className="text-base">
@@ -179,9 +186,7 @@ export const SkeletonTwo = () => {
 export const SkeletonFour = () => {
   return (
     <div className="relative flex flex-col items-start h-full overflow-hidden">
-      {/* <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-r from-neutral-100 to-transparent left-0 z-20" />
-      <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-l from-neutral-100 to-transparent right-0 z-20" /> */}
-      <div className="p-6 z-20">
+      <div className="p-8 z-20">
         <h1 className="text-4xl font-bold">{"Upcoming Events"}</h1>
         <h3 className="text-base">
           {
@@ -189,9 +194,7 @@ export const SkeletonFour = () => {
           }
         </h3>
       </div>
-      <div className="z-10">
-        <AppleCardsCarouselDemo />
-      </div>
+      <AppleCardsCarouselDemo />
     </div>
   );
 };

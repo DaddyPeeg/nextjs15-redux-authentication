@@ -54,19 +54,19 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
       setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth);
     }
   };
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: -340, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: 340, behavior: "smooth" });
     }
   };
 
@@ -91,18 +91,13 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     <CarouselContext.Provider
       value={{ onCardClose: handleCardClose, currentIndex }}
     >
-      <div className="relative w-full">
+      <div className="relative w-full p-8 pt-0">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto  scroll-smooth [scrollbar-width:none]"
+          className="flex w-full overflow-x-scroll overscroll-x-auto  scroll-smooth [scrollbar-width:none] rounded-3xl pb-8"
           ref={carouselRef}
           onScroll={checkScrollability}
         >
-          <div
-            className={cn(
-              "flex flex-row justify-start gap-4 pl-4",
-              "max-w-7xl mx-auto"
-            )}
-          >
+          <div className={cn("flex flex-row justify-start gap-4")}>
             {items.map((item, index) => (
               <motion.div
                 initial={{
@@ -120,14 +115,14 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   },
                 }}
                 key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%]  rounded-3xl"
+                className="rounded-3xl shadow-md"
               >
                 {item}
               </motion.div>
             ))}
           </div>
         </div>
-        <div className="flex gap-2 z-50 w-full my-8">
+        <div className="flex gap-2 z-50 w-full mt-4 justify-center">
           <button
             className="relative z-50 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50"
             onClick={scrollLeft}
@@ -165,7 +160,7 @@ export const Card = ({
     <>
       <motion.div
         layoutId={layout ? `card-${card.title}` : undefined}
-        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[33rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative"
+        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[33rem] md:w-72 overflow-hidden flex flex-col items-start justify-start relative"
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent  pointer-events-none" />
         <div className="relative z-30 p-8">

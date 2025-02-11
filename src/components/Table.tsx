@@ -46,7 +46,7 @@ const scheduleData = [
 export function WeekScheduleComp() {
   return (
     <div className="relative flex flex-col items-start h-full overflow-hidden">
-      <div className="absolute h-full w-24 pointer-events-none bg-gradient-to-l from-neutral-100 to-transparent right-0 z-10" />
+      {/* <div className="absolute h-full w-24 pointer-events-none bg-gradient-to-l from-neutral-100 to-transparent right-0 z-10" /> */}
       <div className="p-6 pb-0 z-20">
         <h1 className="text-4xl font-bold text-primary">Weekly Schedule</h1>
         <h3 className="text-base">
@@ -62,37 +62,41 @@ export function WeekScheduleComp() {
 
 function WeeklySchedule() {
   return (
-    <Table className="border border-border rounded-lg overflow-hidden shadow-lg ">
-      <TableHeader>
-        <TableRow className="bg-primary/10">
-          <TableHead className="w-[100px]">Day</TableHead>
-          <TableHead>Event</TableHead>
-          <TableHead>Start Time</TableHead>
-          <TableHead>End Time</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {scheduleData.map((item) => {
-          const Icon = item.icon;
-          return (
-            <TableRow
-              key={item.day}
-              className={cn(
-                item.event !== "NA" && "bg-primary/5 hover:bg-primary/10",
-                "transition-colors"
-              )}
-            >
-              <TableCell className="font-medium">{item.day}</TableCell>
-              <TableCell className="flex items-center gap-2">
-                <Icon className="w-5 h-5 text-primary" />
-                {item.event}
-              </TableCell>
-              <TableCell>{item.startTime}</TableCell>
-              <TableCell>{item.endTime}</TableCell>
+    <div className="p-8 rounded-lg bg-gradient-to-br from-blue-100 via-violet-500/50 to-red-500/30">
+      <div className="rounded-lg overflow-hidden border bg-neutral-50 border-neutral-300 shadow-sm">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-primary/10">
+              <TableHead className="w-[100px]">Day</TableHead>
+              <TableHead>Event</TableHead>
+              <TableHead>Start Time</TableHead>
+              <TableHead>End Time</TableHead>
             </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
+          </TableHeader>
+          <TableBody>
+            {scheduleData.map((item) => {
+              const Icon = item.icon;
+              return (
+                <TableRow
+                  key={item.day}
+                  className={cn(
+                    item.event !== "NA" && "bg-primary/5 hover:bg-primary/10",
+                    "transition-colors"
+                  )}
+                >
+                  <TableCell className="font-medium">{item.day}</TableCell>
+                  <TableCell className="flex items-center gap-2">
+                    <Icon className="w-5 h-5 text-primary" />
+                    {item.event}
+                  </TableCell>
+                  <TableCell>{item.startTime}</TableCell>
+                  <TableCell>{item.endTime}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
   );
 }

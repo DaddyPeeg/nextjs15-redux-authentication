@@ -100,6 +100,12 @@ const Header = () => {
         const viewPortHeight = window.innerHeight;
         const shouldAddClass = scrollY >= viewPortHeight;
 
+        if (window.scrollY >= headerHeight) {
+          header?.classList.add("backdrop-blur-sm");
+        } else {
+          header?.classList.remove("backdrop-blur-sm");
+        }
+
         if (shouldAddClass && !isClassAdded) {
           header?.classList.add("bg-neutral-900");
           header?.classList.add("shadow-xl");
@@ -137,7 +143,7 @@ const Header = () => {
     listItems.forEach((li) => {
       if (li.textContent?.includes(str)) {
         if (selector instanceof HTMLElement) {
-          selector.style.transform = `translateX(calc(${itemNum}*192px))`;
+          selector.style.transform = `translateX(calc(${itemNum}*160px))`;
         }
         li.classList.add("text-black");
       } else {
@@ -158,7 +164,7 @@ const Header = () => {
 
   return (
     <section
-      className="fixed z-[999] left-1/2 backdrop-blur-sm -translate-x-1/2 top-0 w-full transition-colors duration-500"
+      className="fixed z-[999] top-0 w-full transition duration-500"
       id="header-comp"
     >
       <header className=" flex items-center top-0 w-full py-6 px-4 z-10 text-white max-w-[110rem] mx-auto justify-between ">
@@ -200,7 +206,7 @@ const Header = () => {
               return (
                 <li
                   className={cn(
-                    "text-lg font-thin flex p-2 rounded-full min-w-[12rem] justify-center transition",
+                    "text-sm font-thin flex p-2 rounded-full min-w-[10rem] justify-center transition",
                     {
                       "text-black ": index === 0,
                     }
