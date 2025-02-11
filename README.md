@@ -13,3 +13,4 @@ Things to do:
 - [x] Statement of Faith Section
 - [x] Testimonies Section
 - [x] Feature Section
+- [ ] Landing Page Mobile Responsiveness
