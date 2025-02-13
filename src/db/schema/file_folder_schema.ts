@@ -7,13 +7,9 @@ import {
   timestamp,
 } from "drizzle-orm/singlestore-core";
 
-/**
- * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
- * database instance for multiple projects.
- *
- * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
- */
-export const createTable = singlestoreTableCreator((name) => `cfc_g12_${name}`);
+export const createTable = singlestoreTableCreator(
+  (name) => `cfc_g12_file_${name}`
+);
 
 export const files_table = createTable(
   "files_table",
@@ -36,8 +32,6 @@ export const files_table = createTable(
   }
 );
 
-export type DB_FileType = typeof files_table.$inferSelect;
-
 export const folders_table = createTable(
   "folders_table",
   {
@@ -58,8 +52,6 @@ export const folders_table = createTable(
   }
 );
 
-export type DB_FolderType = typeof folders_table.$inferSelect;
-
 export const slider_table = createTable("slider_table", {
   id: bigint("id", { mode: "number", unsigned: true })
     .primaryKey()
@@ -72,4 +64,6 @@ export const slider_table = createTable("slider_table", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
+export type DB_FileType = typeof files_table.$inferSelect;
+export type DB_FolderType = typeof folders_table.$inferSelect;
 export type DB_SliderItemType = typeof slider_table.$inferSelect;

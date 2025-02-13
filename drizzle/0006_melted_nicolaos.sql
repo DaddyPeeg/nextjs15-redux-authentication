@@ -1,0 +1,1 @@
+CREATE INDEX `token_unique` ON `cfc_g12_auth_session` (`id`,`token`);

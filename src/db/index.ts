@@ -1,12 +1,14 @@
 import { drizzle } from "drizzle-orm/singlestore";
 import { createPool, type Pool } from "mysql2/promise";
 
-import * as schema from "./schema";
+import * as authSchema from "./schema/auth-schema";
+import * as fileSchema from "./schema/file_folder_schema";
 
-/**
- * Cache the database connection in development. This avoids creating a new connection on every HMR
- * update.
- */
+const schema = {
+  ...authSchema,
+  ...fileSchema,
+};
+
 const globalForDb = globalThis as unknown as {
   conn: Pool | undefined;
 };

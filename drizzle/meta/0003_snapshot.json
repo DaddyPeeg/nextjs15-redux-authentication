@@ -1,8 +1,8 @@
 {
   "version": "1",
   "dialect": "singlestore",
-  "id": "df157597-a015-4751-b6ad-bc87598b2666",
-  "prevId": "e12d28b1-5291-4223-ad08-11327f309de7",
+  "id": "fdd3dfb8-57c9-4fc6-8737-b554b026c912",
+  "prevId": "fea94f84-a210-47d9-ac51-2b8c4ec2730f",
   "tables": {
     "cfc_g12_auth_account": {
       "name": "cfc_g12_auth_account",
@@ -135,13 +135,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "token": {
-          "name": "token",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -185,14 +178,6 @@
             "user_id"
           ],
           "isUnique": false
-        },
-        "token_index": {
-          "name": "token_index",
-          "columns": [
-            "id",
-            "token"
-          ],
-          "isUnique": false
         }
       },
       "compositePrimaryKeys": {
@@ -203,14 +188,7 @@
           ]
         }
       },
-      "uniqueConstraints": {
-        "cfc_g12_auth_session_token_unique": {
-          "name": "cfc_g12_auth_session_token_unique",
-          "columns": [
-            "token"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "cfc_g12_auth_user": {
       "name": "cfc_g12_auth_user",
@@ -225,13 +203,6 @@
         "name": {
           "name": "name",
           "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "email": {
-          "name": "email",
-          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -274,14 +245,7 @@
           ]
         }
       },
-      "uniqueConstraints": {
-        "cfc_g12_auth_user_email_unique": {
-          "name": "cfc_g12_auth_user_email_unique",
-          "columns": [
-            "email"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "cfc_g12_auth_verification": {
       "name": "cfc_g12_auth_verification",

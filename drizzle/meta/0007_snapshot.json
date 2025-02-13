@@ -1,8 +1,8 @@
 {
   "version": "1",
   "dialect": "singlestore",
-  "id": "df157597-a015-4751-b6ad-bc87598b2666",
-  "prevId": "e12d28b1-5291-4223-ad08-11327f309de7",
+  "id": "3c23664c-e4e1-462b-9f8b-fe93a2c7c1cb",
+  "prevId": "e27bd2bf-4384-4bb1-8c43-b440ff6aa18a",
   "tables": {
     "cfc_g12_auth_account": {
       "name": "cfc_g12_auth_account",
@@ -100,8 +100,8 @@
         }
       },
       "indexes": {
-        "parent_index": {
-          "name": "parent_index",
+        "user_id_index": {
+          "name": "user_id_index",
           "columns": [
             "user_id"
           ],
@@ -179,18 +179,10 @@
         }
       },
       "indexes": {
-        "parent_index": {
-          "name": "parent_index",
+        "user_id_index": {
+          "name": "user_id_index",
           "columns": [
             "user_id"
-          ],
-          "isUnique": false
-        },
-        "token_index": {
-          "name": "token_index",
-          "columns": [
-            "id",
-            "token"
           ],
           "isUnique": false
         }
@@ -203,14 +195,7 @@
           ]
         }
       },
-      "uniqueConstraints": {
-        "cfc_g12_auth_session_token_unique": {
-          "name": "cfc_g12_auth_session_token_unique",
-          "columns": [
-            "token"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "cfc_g12_auth_user": {
       "name": "cfc_g12_auth_user",
@@ -274,14 +259,7 @@
           ]
         }
       },
-      "uniqueConstraints": {
-        "cfc_g12_auth_user_email_unique": {
-          "name": "cfc_g12_auth_user_email_unique",
-          "columns": [
-            "email"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "cfc_g12_auth_verification": {
       "name": "cfc_g12_auth_verification",

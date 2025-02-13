@@ -3,9 +3,8 @@ import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
   out: "./drizzle",
-  schema: "./src/db/schema.ts",
+  schema: "./src/db/schema",
   dialect: "singlestore",
-
   dbCredentials: {
     host: process.env.DATABASE_HOST!,
     user: process.env.DATABASE_USER!,
