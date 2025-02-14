@@ -16,3 +16,4 @@ Things to do:
   - [x] Mobile
   - [ ] Tablet
   - [x] Desktop
+- [ ] Email API
