@@ -3,42 +3,42 @@
 import sgMail from "@sendgrid/mail";
 
 export async function sendEmail({
+  to_name,
   to,
   subject,
   text,
 }: {
+  to_name: string;
   to: string;
   subject: string;
   text: string;
 }) {
-  if (!process.env.EMAILJS_PUBLIC_KEY) {
-    throw new Error("SENDGRID_API_KEY environment variable is not set");
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error(`INVALID API KEY`);
   }
-  if (!process.env.EMAILJS_PRIVATE_KEY) {
-    throw new Error("EMAIL_FROM environment variable is not set");
-  }
-
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
   const message = {
+    to_name: to_name.trim(),
     to: to.toLowerCase().trim(),
-    from: process.env.EMAIL_FROM,
     subject: subject.trim(),
     text: text.trim(),
   };
 
   try {
-    const [response] = await sgMail.send(message);
+    const send = await fetch(`${process.env.BETTER_AUTH_URL}/api/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
 
-    if (response.statusCode !== 202) {
-      throw new Error(
-        `SendGrid API returned status code ${response.statusCode}`
-      );
+    if (!send.ok) {
+      throw Error(`Resend API returned status code ${send.status}`);
     }
 
     return {
       success: true,
-      messageId: response.headers["x-message-id"],
     };
   } catch (error) {
     console.error("Error sending email:", error);
