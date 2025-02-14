@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -7,9 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "./ui/button";
-import { redirect } from "next/navigation";
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { authClient } from "@/lib/auth-client";
+import { redirect, useRouter } from "next/navigation";
 
 type Props = {
   name: string;
@@ -17,6 +18,16 @@ type Props = {
 };
 
 export function ProfilePic({ name, src }: Props) {
+  const router = useRouter();
+  const handleLogout = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login");
+        },
+      },
+    });
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -29,11 +40,13 @@ export function ProfilePic({ name, src }: Props) {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Settings</DropdownMenuItem>
-        <LogoutLink>
-          <DropdownMenuItem className="bg-destructive text-destructive-foreground hover:bg-destructive/60">
-            Logout
-          </DropdownMenuItem>
-        </LogoutLink>
+
+        <DropdownMenuItem
+          onClick={handleLogout}
+          className="bg-destructive text-destructive-foreground hover:bg-destructive/60"
+        >
+          Logout
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
