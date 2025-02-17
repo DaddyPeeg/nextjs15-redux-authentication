@@ -1,12 +1,7 @@
-import {
-  CurrentAuthUserState,
-  ExtendedKindeUser,
-  UserProviderState,
-} from "@/types";
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { AuthUserState, CurrentAuthUserState } from "@/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialUserState: UserProviderState = {
+const initialUserState: AuthUserState = {
   data: null,
 };
 
@@ -14,7 +9,7 @@ const userSlice = createSlice({
   name: "currentUser",
   initialState: initialUserState,
   reducers: {
-    loadUser: (state, action: PayloadAction<ExtendedKindeUser | null>) => {
+    loadUser: (state, action: PayloadAction<CurrentAuthUserState | null>) => {
       state.data = action.payload;
     },
   },

@@ -10,6 +10,7 @@ Things to do:
   - [x] Email Verification
   - [x] Credential and Social Account Linking
   - [x] Forgot Password / Reset Password
+  - [ ] Role Based Access Control
 - [x] Integrate Database using Neon and Drizzle ORM
 - [x] Initialize Redux as State Manager
 - [x] Navigation

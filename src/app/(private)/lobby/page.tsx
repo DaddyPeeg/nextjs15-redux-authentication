@@ -1,12 +1,12 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-
+import { getSession } from "@/actions/auth-action";
+import Lobby from "@/components/pages/Lobby";
 import { redirect } from "next/navigation";
 
 export default async function LobbyPage() {
-  // const { isAuthenticated } = getKindeServerSession();
+  const session = await getSession();
 
-  // if (!(await isAuthenticated())) {
-  //   redirect("/api/auth/login");
-  // }
-  return <h1 className="text-3xl m-4">Lobby</h1>;
+  if (!session) {
+    redirect("/login");
+  }
+  return <Lobby />;
 }

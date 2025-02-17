@@ -82,16 +82,41 @@ export const signup = async (prevState: any, formData: FormData) => {
   }
 };
 
-export const forgotPassword = async (email: string) => {
-  if (!email) {
-    return {};
+export const forgotPassword = async (prevState: any, formData: FormData) => {
+  const data = Object.fromEntries(formData);
+  try {
+    const validatedFields = loginSchema.pick({ email: true }).safeParse(data);
+
+    if (!validatedFields.success) {
+      return {
+        success: false,
+        error: {
+          message: "Invalid Fields",
+        },
+        prevData: {
+          email: data.email,
+        },
+      };
+    }
+    await auth.api.forgetPassword({
+      body: {
+        email: validatedFields.data.email,
+        redirectTo: "/reset-password",
+      },
+    });
+    return {
+      success: true,
+      message: "Please check your email for a password reset instruction.",
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: { message: error.message },
+      prevData: {
+        email: data.email,
+      },
+    };
   }
-  await auth.api.forgetPassword({
-    body: {
-      email,
-      redirectTo: "/reset-password",
-    },
-  });
 };
 
 export const resetPassword = async (prevState: any, formData: FormData) => {

@@ -79,7 +79,8 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent items-center text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent items-center text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-400"
+              disabled={isPending}
             >
               Sign in
               {isPending && <Loader2 className="ml-2 animate-spin" />}
@@ -114,6 +115,11 @@ const Login = () => {
               Sign up
             </Link>
           </p>
+          <Link href="/forgot-password">
+            <p className="text-sm mt-4 text-blue-500 underline">
+              Forgot your Password?
+            </p>
+          </Link>
         </div>
       </div>
     </div>

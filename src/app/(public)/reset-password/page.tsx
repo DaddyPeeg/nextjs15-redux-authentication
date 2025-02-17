@@ -1,5 +1,5 @@
 import React from "react";
-import ForgotPasswordForm from "./_components/ForgotPasswordForm";
+import ForgotPasswordForm from "./_components/ResetPasswordForm";
 
 export default async function ResetPasswordPage({
   searchParams,

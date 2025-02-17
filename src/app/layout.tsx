@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat, Caveat } from "next/font/google";
 import "./globals.css";
-import ReduxProvider from "@/redux/redux-provider-client";
 import Topnav from "@/components/Topnav";
 
 const geistSans = Geist({
@@ -44,7 +43,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${caveat.variable} antialiased`}
       >
-        <ReduxProvider>{children}</ReduxProvider>
+        {children}
       </body>
     </html>
   );

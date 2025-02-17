@@ -1,34 +1,26 @@
+import { getSession } from "@/actions/auth-action";
 import Topnav from "@/components/Topnav";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { jwtDecode } from "jwt-decode";
+import { CurrentAuthUserState } from "@/types";
+import ReduxProvider from "@/providers/redux-provider-client";
 
 const PrivateRoutesLayout = async ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { getUser, getPermission } = getKindeServerSession();
-  const user = await getUser();
-  const role = await getPermission("create:content");
-
+  const session = await getSession();
+  const user: CurrentAuthUserState = {
+    id: session?.user.id as string,
+    email: session?.user.email as string,
+    picture: session?.user.image as string,
+  };
   return (
-    <main>
-      <Topnav
-        user={
-          user
-            ? {
-                ...user,
-                perm: {
-                  permissionName: "create:content",
-                  grant: role,
-                },
-              }
-            : undefined
-        }
-        isAdmin={role?.isGranted}
-      />
-      {children}
-    </main>
+    <ReduxProvider user={session ? user : undefined}>
+      <main>
+        <Topnav />
+        {children}
+      </main>
+    </ReduxProvider>
   );
 };
 

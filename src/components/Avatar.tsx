@@ -31,7 +31,7 @@ export function ProfilePic({ name, src }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar className="size-14 shrink-0">
+        <Avatar className="shrink-0">
           <AvatarImage src={src} alt={name} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>

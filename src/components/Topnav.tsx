@@ -7,9 +7,8 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "@/redux/reducers/user-reducers";
-import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { RootState } from "@/redux/store";
-import { ExtendedKindeUser } from "@/types";
+import { CurrentAuthUserState } from "@/types";
 
 const links = [
   {
@@ -27,52 +26,44 @@ const links = [
   },
 ];
 
-const Topnav = ({
-  user,
-  isAdmin,
-}: {
-  user?: ExtendedKindeUser | undefined;
-  isAdmin?: boolean;
-}) => {
-  const pathname = usePathname();
-  const dispatch = useDispatch();
+const Topnav = () =>
+  // { user }: { user?: CurrentAuthUserState | undefined }
+  {
+    const pathname = usePathname();
+    const user = useSelector((state: RootState) => state.currentUser.data);
 
-  useEffect(() => {
-    if (user) dispatch(loadUser(user));
-  }, []);
+    return (
+      <div className="w-full py-2 border-b px-4 flex justify-between items-center">
+        <span className="font-bold text-2xl leading-5">
+          <p>CFC G12</p>
+        </span>
 
-  return (
-    <div className="w-full py-2 border-b px-4 flex justify-between items-center">
-      <span className="font-bold text-2xl leading-5">
-        <p>CFC G12</p>
-      </span>
-
-      <nav className="flex items-center gap-4">
-        {links.map((link, linkKey) => {
-          if (!link.admin || (isAdmin && link.admin)) {
-            return (
-              <Link
-                className={cn({
-                  "font-bold": pathname === link.href,
-                })}
-                key={`${link.label}-${linkKey}`}
-                href={link.href}
-              >
-                {link.label}
-              </Link>
-            );
-          }
-          return null;
-        })}
-      </nav>
-      <div className="">
-        <ProfilePic
-          name={user?.id || "test-profile"}
-          src={user?.picture || "https://avatar.iran.liara.run/public/6"}
-        />
+        <nav className="flex items-center gap-4">
+          {links.map((link, linkKey) => {
+            if (!link.admin) {
+              return (
+                <Link
+                  className={cn({
+                    "font-bold": pathname === link.href,
+                  })}
+                  key={`${link.label}-${linkKey}`}
+                  href={link.href}
+                >
+                  {link.label}
+                </Link>
+              );
+            }
+            return null;
+          })}
+        </nav>
+        <div className="">
+          <ProfilePic
+            name={user?.id || "test-profile"}
+            src={user?.picture || "https://avatar.iran.liara.run/public/6"}
+          />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 export default Topnav;

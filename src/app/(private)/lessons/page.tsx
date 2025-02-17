@@ -1,12 +1,13 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getSession } from "@/actions/auth-action";
+
 import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function LessonsPage() {
-  const { isAuthenticated } = getKindeServerSession();
+  const session = await getSession();
 
-  if (!(await isAuthenticated())) {
-    redirect("/api/auth/login");
+  if (!session) {
+    redirect("/login");
   }
   return <h1 className="text-3xl m-4">Lessons</h1>;
 }

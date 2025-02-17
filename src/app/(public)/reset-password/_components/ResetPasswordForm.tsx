@@ -1,6 +1,7 @@
 "use client";
 import { resetPassword } from "@/actions/user-actions";
 import { Loader2 } from "lucide-react";
+import { redirect } from "next/navigation";
 import { useState, FormEvent, useActionState } from "react";
 
 interface ForgotPasswordFormProps {
@@ -13,7 +14,9 @@ const ForgotPasswordForm = ({ token }: ForgotPasswordFormProps) => {
     null
   );
 
-  console.log(state);
+  if (state?.success) {
+    redirect("/login");
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
