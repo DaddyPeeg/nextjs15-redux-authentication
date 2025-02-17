@@ -10,8 +10,8 @@ export async function POST(req: NextRequest) {
     const { to_name, to, subject, text } = await req.json();
 
     const { data, error } = await resend.emails.send({
-      from: "confirmation@noreply.rf.gd",
-      to: [`${to}`],
+      from: "confirmation@resend.dev",
+      to: [`david.estrelloso.tribugenia@gmail.com`],
       subject: "Email Confirmation",
       react: EmailTemplate({ to_name, subject, text }) as React.ReactElement,
     });
@@ -26,5 +26,3 @@ export async function POST(req: NextRequest) {
     return Response.json({ error }, { status: 500 });
   }
 }
-
-// yAzlk25KFk

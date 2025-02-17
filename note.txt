@@ -1,0 +1,13 @@
+Subject: Action Required: Link Your Account to Proceed
+
+Hi [User's Name],
+
+We noticed that you tried to sign in, but your account already exists with a different authentication provider. To proceed, please click the link below to set up a password and gain access to your account:
+
+Set Up Password
+
+If you didn’t attempt this action, you can safely ignore this email. For any questions or assistance, feel free to reach out to our support team.
+
+Best regards,
+[Your Company Name]
+[Your Support Email]

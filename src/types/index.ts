@@ -43,6 +43,23 @@ export const loginSchema = z.object({
     .trim(),
 });
 
+export const passwordSchema = z
+  .object({
+    token: z.string(),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters" })
+      .trim(),
+    confirmPassword: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters" })
+      .trim(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
 export const signupSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }).trim(),
   name: z.string().min(3, {
