@@ -4,7 +4,7 @@ import React from "react";
 export default async function ForgotPasswordPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   try {

@@ -4,7 +4,7 @@ import ForgotPasswordForm from "./_components/ForgotPasswordForm";
 export default async function ResetPasswordPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { token } = await searchParams;
 
