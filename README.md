@@ -5,7 +5,11 @@
 Things to do:
 
 - [x] Setup Folder Structure Architecture
-- [x] Setup Auth using Kinde
+- Setup Auth using Better-Auth
+  - [x] Credentials and Social Provider
+  - [x] Email Verification
+  - [x] Credential and Social Account Linking
+  - [x] Forgot Password / Reset Password
 - [x] Integrate Database using Neon and Drizzle ORM
 - [x] Initialize Redux as State Manager
 - [x] Navigation
@@ -16,4 +20,4 @@ Things to do:
   - [x] Mobile
   - [ ] Tablet
   - [x] Desktop
-- [ ] Email API
+- [x] Email API
