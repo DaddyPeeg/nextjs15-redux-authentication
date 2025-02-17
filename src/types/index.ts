@@ -1,4 +1,3 @@
-import { KindePermission, KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { z } from "zod";
 
 export type SessionPayload = {

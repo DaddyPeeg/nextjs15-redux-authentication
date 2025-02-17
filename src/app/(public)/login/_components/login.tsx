@@ -1,10 +1,9 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 import { authClient } from "@/lib/auth-client";
-import { ErrorContext } from "better-auth/react";
 import { login } from "@/actions/user-actions";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
@@ -20,7 +19,7 @@ const Login = () => {
         callbackURL: "/lobby",
       },
       {
-        onError: (ctx: ErrorContext) => {
+        onError: (ctx: any) => {
           console.error(ctx.error.message ?? "Something went wrong.");
         },
       }

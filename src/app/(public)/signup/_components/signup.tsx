@@ -3,7 +3,6 @@
 import { useActionState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
-import { ErrorContext } from "better-auth/react";
 import { signup } from "@/actions/user-actions";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -19,7 +18,7 @@ const Signup = () => {
         callbackURL: "/lobby",
       },
       {
-        onError: (ctx: ErrorContext) => {
+        onError: (ctx: any) => {
           console.error(ctx.error.message ?? "Something went wrong.");
         },
       }
