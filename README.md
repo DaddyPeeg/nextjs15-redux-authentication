@@ -19,6 +19,6 @@ Things to do:
 - [x] Testimonies Section
 - Landing Page Responsiveness
   - [x] Mobile
-  - [ ] Tablet
+  - [x] Tablet
   - [x] Desktop
 - [x] Email API
