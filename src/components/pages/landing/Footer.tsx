@@ -29,17 +29,19 @@ const Footer = () => {
           </div>
         </a>
       </div>
-      <div className=" flex items-center justify-center p-4 gap-1 lg:gap-4">
+      <div className=" flex lg:flex-row flex-col items-center  justify-center p-4 gap-2 lg:gap-4">
         <p className="text-xs lg:text-sm">
           Christian Fellowship Church. &copy; 2025
         </p>
-        <Link className="text-xs lg:text-sm ml-2 lg:ml-8" href={"#"}>
-          Terms and Conditions
-        </Link>
-        {"|"}
-        <Link className="text-xs lg:text-sm" href={"#"}>
-          Privacy Policy
-        </Link>
+        <div className="flex justify-between items-center gap-2  lg:mt-0">
+          <Link className="text-xs lg:text-sm ml-2 lg:ml-8" href={"#"}>
+            Terms and Conditions
+          </Link>
+          {"|"}
+          <Link className="text-xs lg:text-sm" href={"#"}>
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   );

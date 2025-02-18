@@ -8,8 +8,9 @@ import { BsChatRightDotsFill } from "react-icons/bs";
 import { cn, debounce } from "@/lib/utils";
 import Image from "next/image";
 import { Menu } from "lucide-react";
+import SidebarSheet from "@/components/SidebarSheet";
 
-const navigation = [
+export const navigation = [
   {
     label: "Explore",
     link: "#explore",
@@ -165,10 +166,10 @@ const Header = () => {
 
   return (
     <section
-      className="fixed z-[999] top-0 w-full transition duration-500"
+      className="fixed z-30 top-0 w-full transition duration-500"
       id="header-comp"
     >
-      <header className=" flex items-center top-0 w-full py-6 px-4 z-10 text-white max-w-[110rem] mx-auto justify-between ">
+      <header className="flex items-center top-0 w-full py-6 px-4 text-white max-w-[110rem] mx-auto justify-between ">
         <Link
           className="flex items-center gap-2 cursor-pointer"
           href={"/#explore"}
@@ -194,7 +195,7 @@ const Header = () => {
           </div>
         </Link>
         <nav>
-          <Menu className="lg:hidden block" />
+          <SidebarSheet />
           <ul className="hidden relative lg:flex">
             <div
               className="absolute bg-white top-0 left-0 h-full rounded-full -z-10 transition"
@@ -233,7 +234,6 @@ const Header = () => {
         <div className="hidden lg:block">
           <Link href={"/login"} prefetch>
             <Button
-              size={"lg"}
               variant={"ghost"}
               className="hover:bg-transparent hover:text-white hover:underline"
             >
@@ -241,11 +241,7 @@ const Header = () => {
             </Button>
           </Link>
           <Link href={"/signup"} prefetch>
-            <Button
-              className="text-white bg-transparent"
-              size="lg"
-              variant="outline"
-            >
+            <Button className="text-white bg-transparent" variant="outline">
               Be a member
             </Button>
           </Link>

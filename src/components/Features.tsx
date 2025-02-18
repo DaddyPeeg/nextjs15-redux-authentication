@@ -114,7 +114,7 @@ export const SkeletonTwo = () => {
     },
   };
   return (
-    <div className="relative flex flex-col bg-neutral-900 text-white items-start min-h-[22rem] h-full overflow-hidden">
+    <div className="relative flex flex-col bg-neutral-900 text-white items-start  min-h-[22rem] h-full overflow-hidden">
       <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-r from-neutral-900 to-transparent left-0 z-10" />
       <div className="absolute h-full w-32 pointer-events-none bg-gradient-to-l from-neutral-900 to-transparent right-0 z-10" />
       <Image
@@ -133,7 +133,7 @@ export const SkeletonTwo = () => {
           }
         </h3>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col self-center items-center justify-center check">
         <div className="flex flex-row -ml-20">
           {images.map((image, idx) => {
             const shouldBlur = [0, 0.8, 0.3, 0.6, 0];
@@ -151,7 +151,7 @@ export const SkeletonTwo = () => {
                   alt="bali images"
                   width="500"
                   height="500"
-                  className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+                  className="rounded-lg h-20 w-20 sm:h-28 sm:w-28 xl:h-40 xl:w-40 object-cover flex-shrink-0"
                 />
               </motion.div>
             );
@@ -174,7 +174,7 @@ export const SkeletonTwo = () => {
                   alt="bali images"
                   width="500"
                   height="500"
-                  className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+                  className="rounded-lg h-20 w-20 sm:h-28 sm:w-28 xl:h-40 xl:w-40 object-cover flex-shrink-0"
                 />
               </motion.div>
             );

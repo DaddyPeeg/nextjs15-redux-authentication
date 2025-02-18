@@ -143,7 +143,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="absolute  text-white p-2 lg:p-14 top-[calc(50%+12rem)] -translate-y-1/2 rounded-r-xl rounded-br-xl">
-        <div className=" rounded-xl p-2 lg:p-14">
+        <div className=" rounded-xl p-4 md:p-8 lg:p-14">
           <div className="overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.h1
@@ -163,7 +163,7 @@ const Hero = () => {
                   duration: 1,
                   ease: "easeInOut",
                 }}
-                className="text-2xl lg:text-7xl tracking-tighter leading-tight text-nowrap font-bold specialtext font-montserrat"
+                className="text-2xl sm:text-5xl lg:text-7xl tracking-tighter leading-tight text-nowrap font-bold specialtext font-montserrat"
                 key={slide.title}
               >
                 {slide.title}
@@ -173,7 +173,7 @@ const Hero = () => {
           <div className="overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.p
-                className="text-xs lg:text-xl w-full max-w-[20rem] lg:max-w-[40rem]"
+                className="lg:text-lg w-full max-w-[25rem] lg:max-w-[40rem]"
                 initial={{
                   y: 20,
                   opacity: 0,
