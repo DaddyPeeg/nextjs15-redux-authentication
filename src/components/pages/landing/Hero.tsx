@@ -114,7 +114,7 @@ const Hero = () => {
           <ImageLoading key={slide.title} alt={slide.title} src={slide.image} />
         </motion.div>
       </AnimatePresence>
-      <div className="absolute left-1/2 bottom-8 -translate-x-1/2 z-50">
+      <div className="absolute left-1/2 bottom-8 -translate-x-1/2 z-20">
         <div className="radio-input">
           {slides.map((items, index) => {
             return (

@@ -16,14 +16,25 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 const SidebarSheet = () => {
-  const [current, setCurrent] = useState(window.location.hash || "");
+  const [isOpen, setIsOpen] = useState(false);
+  const [current, setCurrent] = useState(() => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      return window.location.hash;
+    }
+    return "#explore";
+  });
 
   const handleSelect = (text: string) => {
     setCurrent(text);
+    setIsOpen(false);
+  };
+
+  const handleOpenChange = (e: boolean) => {
+    setIsOpen(e);
   };
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger className="lg:hidden block">
         <Menu />
       </SheetTrigger>

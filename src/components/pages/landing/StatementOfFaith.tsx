@@ -53,7 +53,7 @@ const StatementOfFaith = () => {
     <section
       data-landing-sections
       id="statement_of_faith"
-      className="w-full min-h-screen bg-neutral-100 scroll-mt-[6rem]"
+      className="w-full min-h-screen bg-neutral-100 scroll-mt-[8rem]"
     >
       {/* <AuroraBackground> */}
       <div className="w-full py-8 max-w-[110rem] gap-2 lg:gap-16 flex px-4 lg:flex-row flex-col mx-auto relative">
