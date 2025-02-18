@@ -15,6 +15,8 @@ const ReduxProvider = ({
 }) => {
   if (user) {
     store.dispatch(loadUser(user));
+  } else {
+    store.dispatch(loadUser(null));
   }
 
   return <Provider store={store}>{children}</Provider>;

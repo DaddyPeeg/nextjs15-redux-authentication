@@ -231,20 +231,24 @@ const Header = () => {
           </ul>
         </nav>
         <div className="hidden lg:block">
-          <Button
-            size={"lg"}
-            variant={"ghost"}
-            className="hover:bg-transparent hover:text-white hover:underline"
-          >
-            Login
-          </Button>
-          <Button
-            className="text-white bg-transparent"
-            size="lg"
-            variant="outline"
-          >
-            Be a member
-          </Button>
+          <Link href={"/login"} prefetch>
+            <Button
+              size={"lg"}
+              variant={"ghost"}
+              className="hover:bg-transparent hover:text-white hover:underline"
+            >
+              Login
+            </Button>
+          </Link>
+          <Link href={"/signup"} prefetch>
+            <Button
+              className="text-white bg-transparent"
+              size="lg"
+              variant="outline"
+            >
+              Be a member
+            </Button>
+          </Link>
         </div>
       </header>
     </section>

@@ -11,6 +11,13 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|login|signup|forgot-password|reset-password|$).*)",
+    // Match all paths except:
+    // - API routes (/api/)
+    // - Next.js internals (_next/)
+    // - Next.js image optimization (_next/image)
+    // - Static files with common extensions
+    // - Root path (/)
+    // - Login page (/login)
+    "/((?!api|_next|login|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest))(?!$).*)",
   ],
 };
