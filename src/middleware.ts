@@ -19,6 +19,6 @@ export const config = {
     // - Static files with common extensions
     // - Root path (/)
     // - Login page (/login)
-    "/((?!api|_next|login|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest))(?!$).*)",
+    "/((?!api|_next|login|reset-password|signup|forgot-password|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest))(?!$).*)",
   ],
 };
