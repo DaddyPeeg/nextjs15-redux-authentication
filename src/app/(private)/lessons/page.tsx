@@ -1,4 +1,5 @@
 import { getSession } from "@/actions/auth-action";
+import ComingSoon from "@/components/pages/Upcomming";
 import { hasPermission } from "@/lib/RBAC";
 import { Roles } from "@/types";
 
@@ -25,5 +26,5 @@ export default async function LessonsPage() {
   ) {
     redirect("/lobby");
   }
-  return <h1 className="text-3xl m-4">Lessons</h1>;
+  return <ComingSoon />;
 }

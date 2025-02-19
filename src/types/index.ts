@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { DB_UserType, DB_SessionType } from "../db/schema/auth-schema";
+import { getSession } from "@/actions/auth-action";
 
 export type SessionPayload = {
   userId: string;
@@ -27,6 +29,8 @@ export type CurrentAuthUserState = {
 export type AuthUserState = {
   data: CurrentAuthUserState | null;
 };
+
+export type AuthSession = Awaited<ReturnType<typeof getSession>>;
 
 export const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }).trim(),

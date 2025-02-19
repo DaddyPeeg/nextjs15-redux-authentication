@@ -17,6 +17,14 @@ const links = [
     href: "/lobby",
   },
   {
+    label: "Ministries",
+    href: "/ministries",
+  },
+  {
+    label: "Events",
+    href: "/events",
+  },
+  {
     label: "Lessons",
     href: "/lessons",
     admin: true,

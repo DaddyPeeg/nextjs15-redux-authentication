@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -9,13 +9,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 import { navigation } from "./pages/landing/Header";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { AuthSession } from "@/types";
 
-const SidebarSheet = () => {
+const SidebarSheet = ({ session }: { session?: AuthSession }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [current, setCurrent] = useState(() => {
     if (typeof window !== "undefined" && window.location.hash) {
@@ -68,19 +69,30 @@ const SidebarSheet = () => {
               );
             })}
             <div className="flex items-center gap-2 mt-8 justify-end">
-              <Link href={"/login"}>
-                <Button variant={"secondary"} className="min-w-32 max-w-40">
-                  Login
-                </Button>
-              </Link>
-              <Link href={"/signup"}>
-                <Button
-                  variant={"outline"}
-                  className="min-w-32 bg-transparent max-w-40"
-                >
-                  Be a member
-                </Button>
-              </Link>
+              {!session ? (
+                <>
+                  <Link href={"/login"}>
+                    <Button variant={"secondary"} className="min-w-32 max-w-40">
+                      Login
+                    </Button>
+                  </Link>
+                  <Link href={"/signup"}>
+                    <Button
+                      variant={"outline"}
+                      className="min-w-32 bg-transparent max-w-40"
+                    >
+                      Be a member
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <Link href={"/lobby"} prefetch>
+                  <Button variant={"outline"} className="bg-transparent ">
+                    Go to Lobby
+                    <ArrowRight className="ml-2 shrink-0 size-4" />
+                  </Button>
+                </Link>
+              )}
             </div>
           </ul>
         </nav>

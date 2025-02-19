@@ -2,14 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import { FaCross, FaHamburger, FaPrayingHands, FaSearch } from "react-icons/fa";
+import React, { useEffect, useRef } from "react";
+import { FaCross, FaPrayingHands, FaSearch } from "react-icons/fa";
 import { BsChatRightDotsFill } from "react-icons/bs";
-import { cn, debounce } from "@/lib/utils";
-import Image from "next/image";
-import { Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { ArrowRight, Menu } from "lucide-react";
 import SidebarSheet from "@/components/SidebarSheet";
 import Logo from "@/components/Logo";
+import { AuthSession } from "@/types";
 
 export const navigation = [
   {
@@ -34,7 +34,7 @@ export const navigation = [
   },
 ];
 
-const Header = () => {
+const Header = ({ session }: { session?: AuthSession }) => {
   const disableObserver = useRef(false);
 
   useEffect(() => {
@@ -173,7 +173,7 @@ const Header = () => {
       <header className="flex items-center top-0 w-full py-6 px-4 text-white max-w-[110rem] mx-auto justify-between ">
         <Logo handleClick={() => selectNav("Explore", 0)} />
         <nav>
-          <SidebarSheet />
+          <SidebarSheet session={session} />
           <ul className="hidden relative lg:flex">
             <div
               className="absolute bg-white top-0 left-0 h-full rounded-full -z-10 transition"
@@ -210,19 +210,30 @@ const Header = () => {
           </ul>
         </nav>
         <div className="hidden lg:block">
-          <Link href={"/login"} prefetch>
-            <Button
-              variant={"ghost"}
-              className="hover:bg-transparent hover:text-white hover:underline"
-            >
-              Login
-            </Button>
-          </Link>
-          <Link href={"/signup"} prefetch>
-            <Button className="text-white bg-transparent" variant="outline">
-              Be a member
-            </Button>
-          </Link>
+          {!session ? (
+            <>
+              <Link href={"/login"} prefetch>
+                <Button
+                  variant={"ghost"}
+                  className="hover:bg-transparent hover:text-white hover:underline"
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link href={"/signup"} prefetch>
+                <Button className="text-white bg-transparent" variant="outline">
+                  Be a member
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <Link href={"/lobby"} prefetch>
+              <Button variant={"outline"} className="bg-transparent ">
+                Go to Lobby
+                <ArrowRight className="ml-2 shrink-0 size-4" />
+              </Button>
+            </Link>
+          )}
         </div>
       </header>
     </section>

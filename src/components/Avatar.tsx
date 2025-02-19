@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 
 type Props = {
@@ -39,8 +40,9 @@ export function ProfilePic({ name, src }: Props) {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-
+        <Link href={"/account-settings"} prefetch>
+          <DropdownMenuItem>Settings</DropdownMenuItem>
+        </Link>
         <DropdownMenuItem
           onClick={handleLogout}
           className="bg-destructive text-destructive-foreground hover:bg-destructive/60"

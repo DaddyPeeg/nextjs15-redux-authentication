@@ -22,3 +22,10 @@ Things to do:
   - [x] Tablet
   - [x] Desktop
 - [x] Email API
+- Private Routes
+  - [ ] Lobby
+  - [ ] Ministries
+  - [ ] Events
+  - [ ] Lessons
+  - [ ] CMS
+  - [ ] Account Settings

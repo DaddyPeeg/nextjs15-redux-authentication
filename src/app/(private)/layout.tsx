@@ -2,6 +2,7 @@ import { getSession } from "@/actions/auth-action";
 import Topnav from "@/components/Topnav";
 import { CurrentAuthUserState, Roles } from "@/types";
 import ReduxProvider from "@/providers/redux-provider-client";
+import Footer from "@/components/pages/landing/Footer";
 
 const PrivateRoutesLayout = async ({
   children,
@@ -20,6 +21,7 @@ const PrivateRoutesLayout = async ({
       <main className="flex flex-col min-h-screen">
         <Topnav />
         {children}
+        <Footer />
       </main>
     </ReduxProvider>
   );

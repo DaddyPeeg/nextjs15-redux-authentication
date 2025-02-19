@@ -5,13 +5,16 @@ import Header from "./Header";
 import StatementOfFaith from "./StatementOfFaith";
 import Testimonies from "./Testimonies";
 import Feature from "./Feature";
+import { AuthSession } from "@/types";
 
-type Props = {};
+type Props = {
+  session?: AuthSession;
+};
 
-const LandingPage = () => {
+const LandingPage = ({ session }: Props) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <Header session={session} />
       <main>
         <Hero />
         <Feature />

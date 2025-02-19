@@ -1,4 +1,5 @@
 import { getSession } from "@/actions/auth-action";
+import ComingSoon from "@/components/pages/Upcomming";
 import { hasPermission } from "@/lib/RBAC";
 import { CurrentAuthUserState, Roles } from "@/types";
 import { redirect } from "next/navigation";
@@ -23,5 +24,5 @@ export default async function CMSPage() {
   ) {
     redirect("/lobby");
   }
-  return <div className="text-3xl m-4">CMS</div>;
+  return <ComingSoon />;
 }
