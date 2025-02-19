@@ -15,10 +15,13 @@ export type LoginReturnType = {
   password: string | FormDataEntryValue;
 };
 
+export type Roles = "admin" | "member" | "visitor";
+
 export type CurrentAuthUserState = {
   id: string;
   email: string;
   picture: string;
+  role: Roles;
 };
 
 export type AuthUserState = {

@@ -238,7 +238,7 @@ body {
 
 .parallax {
   background-image: url("/testimonial.webp");
-  height: 200vh;
+  height: 100rem;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

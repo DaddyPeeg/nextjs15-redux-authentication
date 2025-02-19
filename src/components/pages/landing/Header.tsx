@@ -9,6 +9,7 @@ import { cn, debounce } from "@/lib/utils";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import SidebarSheet from "@/components/SidebarSheet";
+import Logo from "@/components/Logo";
 
 export const navigation = [
   {
@@ -170,30 +171,7 @@ const Header = () => {
       id="header-comp"
     >
       <header className="flex items-center top-0 w-full py-6 px-4 text-white max-w-[110rem] mx-auto justify-between ">
-        <Link
-          className="flex items-center gap-2 cursor-pointer"
-          href={"/#explore"}
-          onClick={() => selectNav("Explore", 0)}
-        >
-          <div className="relative size-10 lg:size-16 rounded-full">
-            <Image
-              src="/icons/cfc-logo.png"
-              alt="g12-icon"
-              fill
-              priority
-              className="size-full object-contain"
-            />
-          </div>
-          <div className="relative size-10 lg:size-16">
-            <Image
-              src="/icons/g12-logo.png"
-              alt="g12-icon"
-              fill
-              priority
-              className="size-full object-contain"
-            />
-          </div>
-        </Link>
+        <Logo handleClick={() => selectNav("Explore", 0)} />
         <nav>
           <SidebarSheet />
           <ul className="hidden relative lg:flex">

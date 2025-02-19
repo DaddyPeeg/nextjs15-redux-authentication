@@ -15,7 +15,7 @@ CREATE TABLE `cfc_g12_auth_account` (
 	CONSTRAINT `cfc_g12_auth_account_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
-CREATE INDEX `parent_index` ON `cfc_g12_auth_account` (`user_id`);--> statement-breakpoint
+CREATE INDEX `user_id_index` ON `cfc_g12_auth_account` (`user_id`);--> statement-breakpoint
 CREATE TABLE `cfc_g12_auth_session` (
 	`id` varchar(36) NOT NULL,
 	`expires_at` timestamp NOT NULL,
@@ -25,12 +25,12 @@ CREATE TABLE `cfc_g12_auth_session` (
 	`ip_address` text,
 	`user_agent` text,
 	`user_id` varchar(36) NOT NULL,
-	CONSTRAINT `cfc_g12_auth_session_id` PRIMARY KEY(`id`),
-	CONSTRAINT `cfc_g12_auth_session_token_unique` UNIQUE(`token`)
+	`impersonated_by` varchar(36),
+	CONSTRAINT `cfc_g12_auth_session_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
-CREATE INDEX `parent_index` ON `cfc_g12_auth_session` (`user_id`);--> statement-breakpoint
-CREATE INDEX `token_unique` ON `cfc_g12_auth_session` (`id`,`token`);--> statement-breakpoint
+CREATE INDEX `user_id_index` ON `cfc_g12_auth_session` (`user_id`);--> statement-breakpoint
+CREATE INDEX `impersonated_by_index` ON `cfc_g12_auth_session` (`impersonated_by`);--> statement-breakpoint
 CREATE TABLE `cfc_g12_auth_user` (
 	`id` varchar(36) NOT NULL,
 	`name` text NOT NULL,
@@ -39,8 +39,11 @@ CREATE TABLE `cfc_g12_auth_user` (
 	`image` text,
 	`created_at` timestamp NOT NULL,
 	`updated_at` timestamp NOT NULL,
-	CONSTRAINT `cfc_g12_auth_user_id` PRIMARY KEY(`id`),
-	CONSTRAINT `cfc_g12_auth_user_email_unique` UNIQUE(`email`)
+	`role` text NOT NULL DEFAULT 'visitor',
+	`banned` boolean NOT NULL DEFAULT false,
+	`ban_reason` text,
+	`ban_expires` timestamp,
+	CONSTRAINT `cfc_g12_auth_user_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
 CREATE TABLE `cfc_g12_auth_verification` (

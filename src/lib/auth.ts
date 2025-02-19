@@ -4,6 +4,7 @@ import { db } from "@/db"; // your drizzle instance
 
 import * as auth_schema from "@/db/schema/auth-schema";
 import { nextCookies } from "better-auth/next-js";
+import { admin } from "better-auth/plugins";
 import { sendEmail } from "@/actions/email";
 
 export const auth = betterAuth({
@@ -40,7 +41,13 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
-  plugins: [nextCookies()],
+  plugins: [
+    nextCookies(),
+    admin({
+      defaultRole: "visitor",
+      impersonationSessionDuration: 60 * 60 * 24,
+    }),
+  ],
 } satisfies BetterAuthOptions);
 
 export type Session = typeof auth.$Infer.Session;

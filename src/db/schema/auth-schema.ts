@@ -7,7 +7,6 @@ import {
   index,
 } from "drizzle-orm/singlestore-core";
 
-// Use the same table creator pattern as file_folder_schema
 export const createTable = singlestoreTableCreator(
   (name) => `cfc_g12_auth_${name}`
 );
@@ -20,6 +19,10 @@ export const user = createTable("user", {
   image: text("image"),
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
+  role: text("role").notNull().default("visitor"),
+  banned: boolean("banned").notNull().default(false),
+  banReason: text("ban_reason"),
+  banExpires: timestamp("ban_expires"),
 });
 
 export const session = createTable(
@@ -33,9 +36,13 @@ export const session = createTable(
     ipAddress: text("ip_address"),
     userAgent: text("user_agent"),
     userId: varchar("user_id", { length: 36 }).notNull(),
+    impersonatedBy: varchar("impersonated_by", { length: 36 }),
   },
   (t) => {
-    return [index("user_id_index").on(t.userId)];
+    return [
+      index("user_id_index").on(t.userId),
+      index("impersonated_by_index").on(t.impersonatedBy),
+    ];
   }
 );
 
@@ -70,7 +77,7 @@ export const verification = createTable("verification", {
   updatedAt: timestamp("updated_at"),
 });
 
-// Add type exports like in file_folder_schema
+// Add type exports
 export type DB_UserType = typeof user.$inferSelect;
 export type DB_SessionType = typeof session.$inferSelect;
 export type DB_AccountType = typeof account.$inferSelect;

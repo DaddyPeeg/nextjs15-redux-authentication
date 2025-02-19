@@ -1,7 +1,7 @@
 {
   "version": "1",
   "dialect": "singlestore",
-  "id": "e12d28b1-5291-4223-ad08-11327f309de7",
+  "id": "763e739d-c0bb-4f33-9d91-0ea862f00a26",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "cfc_g12_auth_account": {
@@ -100,8 +100,8 @@
         }
       },
       "indexes": {
-        "parent_index": {
-          "name": "parent_index",
+        "user_id_index": {
+          "name": "user_id_index",
           "columns": [
             "user_id"
           ],
@@ -176,21 +176,27 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "impersonated_by": {
+          "name": "impersonated_by",
+          "type": "varchar(36)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {
-        "parent_index": {
-          "name": "parent_index",
+        "user_id_index": {
+          "name": "user_id_index",
           "columns": [
             "user_id"
           ],
           "isUnique": false
         },
-        "token_unique": {
-          "name": "token_unique",
+        "impersonated_by_index": {
+          "name": "impersonated_by_index",
           "columns": [
-            "id",
-            "token"
+            "impersonated_by"
           ],
           "isUnique": false
         }
@@ -203,14 +209,7 @@
           ]
         }
       },
-      "uniqueConstraints": {
-        "cfc_g12_auth_session_token_unique": {
-          "name": "cfc_g12_auth_session_token_unique",
-          "columns": [
-            "token"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "cfc_g12_auth_user": {
       "name": "cfc_g12_auth_user",
@@ -263,6 +262,36 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'visitor'"
+        },
+        "banned": {
+          "name": "banned",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "ban_reason": {
+          "name": "ban_reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ban_expires": {
+          "name": "ban_expires",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {},
@@ -274,14 +303,7 @@
           ]
         }
       },
-      "uniqueConstraints": {
-        "cfc_g12_auth_user_email_unique": {
-          "name": "cfc_g12_auth_user_email_unique",
-          "columns": [
-            "email"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "cfc_g12_auth_verification": {
       "name": "cfc_g12_auth_verification",
