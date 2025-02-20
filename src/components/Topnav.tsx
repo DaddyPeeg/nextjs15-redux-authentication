@@ -9,9 +9,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { hasPermission } from "@/lib/RBAC";
 import Logo from "./Logo";
-import { Menu } from "lucide-react";
+import SidebarPrivateSheet from "./SidebarPrivateSheet";
 
-const links = [
+export const links = [
   {
     label: "Lobby",
     href: "/lobby",
@@ -44,7 +44,7 @@ const Topnav = () => {
     <section className="w-full p-4 bg-neutral-900 sticky z-30 top-0">
       <div className="flex justify-between items-center mx-auto w-full max-w-7xl">
         <Logo href={"/lobby"} />
-        <Menu className="text-white block lg:hidden" />
+        <SidebarPrivateSheet />
         <div className="items-center gap-12 hidden lg:flex">
           <nav className="flex items-center text-white gap-8">
             {links.map((link, linkKey) => {
