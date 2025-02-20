@@ -20,7 +20,8 @@ export const auth = betterAuth({
         to_name: user.name,
         to: user.email,
         subject: "Set Password for Account",
-        text: `Click the link to set password to your account: ${url}`,
+        text: `Please click the link to set a password to your account`,
+        url,
       });
     },
   },
@@ -31,7 +32,8 @@ export const auth = betterAuth({
         to_name: user.name,
         to: user.email,
         subject: "Verify your email address",
-        text: `Click the link to verify your email: ${url}`,
+        text: `Click the link to verify your email`,
+        url,
       });
     },
   },

@@ -3,10 +3,10 @@ import Lobby from "@/components/pages/private/Lobby";
 import { redirect } from "next/navigation";
 
 export default async function LobbyPage() {
-  const session = await getSession();
+  // const session = await getSession();
 
-  if (!session) {
-    redirect("/login");
-  }
+  // if (!session) {
+  //   redirect("/login");
+  // }
   return <Lobby />;
 }

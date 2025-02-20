@@ -16,6 +16,7 @@ const PrivateRoutesLayout = async ({
     picture: session?.user.image as string,
     role: session?.user.role as Roles,
   };
+
   return (
     <ReduxProvider user={session ? user : undefined}>
       <main className="flex flex-col min-h-screen">

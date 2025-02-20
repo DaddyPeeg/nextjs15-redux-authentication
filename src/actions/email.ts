@@ -5,11 +5,13 @@ export async function sendEmail({
   to,
   subject,
   text,
+  url,
 }: {
   to_name: string;
   to: string;
   subject: string;
   text: string;
+  url: string;
 }) {
   if (!process.env.RESEND_API_KEY) {
     throw new Error(`INVALID API KEY`);
@@ -20,6 +22,7 @@ export async function sendEmail({
     to: to.toLowerCase().trim(),
     subject: subject.trim(),
     text: text.trim(),
+    url: url.trim(),
   };
 
   try {

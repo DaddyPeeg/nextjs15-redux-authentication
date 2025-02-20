@@ -1,9 +1,11 @@
 "use server";
 
+import { db } from "@/db";
 import { auth } from "@/lib/auth";
 import { loginSchema, passwordSchema, signupSchema } from "@/types";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { account, user } from "@/db/schema/auth-schema";
+import { eq } from "drizzle-orm";
+import { sendEmail } from "./email";
 
 export const login = async (prevState: any, formData: FormData) => {
   const data = Object.fromEntries(formData);
@@ -14,6 +16,54 @@ export const login = async (prevState: any, formData: FormData) => {
         success: false,
         error: {
           message: "Invalid Fields",
+        },
+        prevData: {
+          email: data.email,
+          password: data.password,
+        },
+      };
+    }
+
+    // Check if user has an account associated with the email if it has a password proceed if it doesn't send an email.
+
+    // DB_AccountType
+    const users = await db
+      .select({
+        name: user.name,
+        email: user.email,
+        id: user.id,
+        password: account.password,
+      })
+      .from(user)
+      .where(eq(user.email, validatedFields.data.email))
+      .innerJoin(account, eq(user.id, account.userId))
+      .then((res) => res[0]);
+
+    if (!users) {
+      return {
+        success: false,
+        error: {
+          message: "Invalid Email or Password",
+        },
+        prevData: {
+          email: data.email,
+          password: data.password,
+        },
+      };
+    }
+
+    if (!users.password) {
+      await auth.api.forgetPassword({
+        body: {
+          email: validatedFields.data.email,
+          redirectTo: "/reset-password",
+        },
+      });
+      return {
+        success: false,
+        error: {
+          message:
+            "Account exists without a credential provider. Check your email to set a password.",
         },
         prevData: {
           email: data.email,
@@ -35,7 +85,7 @@ export const login = async (prevState: any, formData: FormData) => {
   } catch (error: any) {
     return {
       success: false,
-      error: { message: error.message },
+      error: { message: error?.cause?.message ?? error.message },
       prevData: {
         email: data.email,
         password: data.password,
@@ -72,7 +122,7 @@ export const signup = async (prevState: any, formData: FormData) => {
   } catch (error: any) {
     return {
       success: false,
-      error: { message: error.message },
+      error: { message: error?.cause?.message ?? error.message },
       prevData: {
         email: data.email,
         password: data.password,
@@ -98,6 +148,27 @@ export const forgotPassword = async (prevState: any, formData: FormData) => {
         },
       };
     }
+
+    const users = await db
+      .select({
+        email: user.email,
+      })
+      .from(user)
+      .where(eq(user.email, validatedFields.data.email))
+      .then((res) => res[0]);
+
+    if (!users) {
+      return {
+        success: false,
+        error: {
+          message: "Invalid Email",
+        },
+        prevData: {
+          email: data.email,
+        },
+      };
+    }
+
     await auth.api.forgetPassword({
       body: {
         email: validatedFields.data.email,
@@ -111,7 +182,7 @@ export const forgotPassword = async (prevState: any, formData: FormData) => {
   } catch (error: any) {
     return {
       success: false,
-      error: { message: error.message },
+      error: { message: error?.cause?.message ?? error.message },
       prevData: {
         email: data.email,
       },
@@ -151,7 +222,7 @@ export const resetPassword = async (prevState: any, formData: FormData) => {
   } catch (error: any) {
     return {
       success: false,
-      error: { message: error.message },
+      error: { message: error?.cause?.message ?? error.message },
       prevData: {
         token: data.token,
         password: data.password,

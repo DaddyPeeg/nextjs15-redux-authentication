@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import {
@@ -24,7 +26,10 @@ const Lobby = () => {
   return (
     <section className="flex-1 py-6 bg-gradient-to-br from-neutral-50 via-background to-neutral-50 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid gap-6 md:grid-cols-[2fr_1fr]">
+        <div
+          data-container
+          className="grid gap-6 md:grid-cols-[2fr_1fr] relative isolate"
+        >
           <div className="space-y-6">
             <section>
               <h1 className="font-montserrat text-center md:text-start tracking-tighter font-bold lg:text-5xl text-4xl text-neutral-600">
@@ -47,8 +52,10 @@ const Lobby = () => {
               <h2 className="text-2xl font-semibold tracking-tight">
                 Upcoming Events
               </h2>
-              <div className="mt-4 grid gap-4 grid-cols-1 sm:grid-cols-4">
-                <Card className="sm:col-span-2">
+
+              {/* grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] */}
+              <div className="mt-4 gap-4 flex flex-wrap items-stretch">
+                <Card className="flex-1 min-w-[300px] max-w-full">
                   <CardHeader>
                     <CardTitle>Sunday Divine Service</CardTitle>
                     <CardDescription>Every Sunday at 9:00 AM</CardDescription>
@@ -60,7 +67,7 @@ const Lobby = () => {
                     </Button>
                   </CardContent>
                 </Card>
-                <Card className="sm:col-span-2">
+                <Card className="flex-1 min-w-[300px] max-w-full">
                   <CardHeader>
                     <CardTitle>Youth Ministry Activities</CardTitle>
                     <CardDescription>Saturday at 1:00 PM</CardDescription>
@@ -72,7 +79,7 @@ const Lobby = () => {
                     </Button>
                   </CardContent>
                 </Card>
-                <Card className="sm:col-span-4">
+                <Card className="flex-1 min-w-[300px] max-w-full">
                   <CardHeader>
                     <CardTitle>Prayer and Fasting</CardTitle>
                     <CardDescription>March 3, 2025 @ 6:00 PM</CardDescription>
@@ -159,7 +166,7 @@ const Lobby = () => {
               <Button className="mt-4">Get Connected</Button>
             </section>
           </div>
-          <aside className="space-y-6">
+          <aside data-aside className="space-y-6 self-start sticky top-[120px]">
             <Card>
               <CardHeader>
                 <CardTitle>Service Times</CardTitle>
