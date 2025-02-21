@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { auth } from "@/lib/auth";
 import { loginSchema, passwordSchema, signupSchema } from "@/types";
 import { account, user } from "@/db/schema/auth-schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { sendEmail } from "./email";
 
 export const login = async (prevState: any, formData: FormData) => {
@@ -29,14 +29,17 @@ export const login = async (prevState: any, formData: FormData) => {
     // DB_AccountType
     const users = await db
       .select({
-        name: user.name,
-        email: user.email,
         id: user.id,
+        email: user.email,
+        emailVerfied: user.emailVerified,
         password: account.password,
       })
       .from(user)
       .where(eq(user.email, validatedFields.data.email))
-      .innerJoin(account, eq(user.id, account.userId))
+      .leftJoin(
+        account,
+        and(eq(user.id, account.userId), eq(account.providerId, "credential"))
+      )
       .then((res) => res[0]);
 
     if (!users) {
