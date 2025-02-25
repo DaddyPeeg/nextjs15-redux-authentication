@@ -13,8 +13,6 @@ import {
   renameFileFolder,
 } from "@/actions/cms_action";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
-import Alert from "@/components/Alert";
 import { useConfirm } from "@/hooks/use-confirm";
 
 export type FileItem = {

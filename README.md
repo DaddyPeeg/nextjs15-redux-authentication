@@ -23,9 +23,13 @@ Things to do:
   - [x] Desktop
 - [x] Email API
 - Private Routes
-  - [ ] Lobby
+  - [x] Lobby
   - [ ] Ministries
   - [ ] Events
   - [ ] Lessons
-  - [ ] CMS
+  - CMS
+    - [x] File Manager
+    - [ ] Slider Manager
+    - [ ] Bulletin Manager
+    - [ ] Events Manager
   - [ ] Account Settings
