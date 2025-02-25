@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { DB_UserType, DB_SessionType } from "../db/schema/auth-schema";
-import { getSession } from "@/actions/auth-action";
+import { getSession } from "@/actions/util-action";
 import { getAllFilesAndFolders } from "@/actions/cms_action";
 
 export type SessionPayload = {

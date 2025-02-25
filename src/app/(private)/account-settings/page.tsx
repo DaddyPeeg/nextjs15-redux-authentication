@@ -1,4 +1,4 @@
-import { isAuth } from "@/actions/auth-action";
+import { isAuth } from "@/actions/util-action";
 import AccountSettings from "@/components/pages/private/AccountSettings";
 import { redirect } from "next/navigation";
 import React from "react";

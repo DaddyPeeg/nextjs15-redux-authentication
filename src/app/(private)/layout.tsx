@@ -1,4 +1,4 @@
-import { getSession } from "@/actions/auth-action";
+import { getSession } from "@/actions/util-action";
 import Topnav from "@/components/Topnav";
 import { CurrentAuthUserState, Roles } from "@/types";
 import ReduxProvider from "@/providers/redux-provider-client";

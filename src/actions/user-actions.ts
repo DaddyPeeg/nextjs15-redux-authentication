@@ -5,7 +5,6 @@ import { auth } from "@/lib/auth";
 import { loginSchema, passwordSchema, signupSchema } from "@/types";
 import { account, user } from "@/db/schema/auth-schema";
 import { and, eq } from "drizzle-orm";
-import { sendEmail } from "./email";
 
 export const login = async (prevState: any, formData: FormData) => {
   const data = Object.fromEntries(formData);
@@ -24,9 +23,6 @@ export const login = async (prevState: any, formData: FormData) => {
       };
     }
 
-    // Check if user has an account associated with the email if it has a password proceed if it doesn't send an email.
-
-    // DB_AccountType
     const users = await db
       .select({
         id: user.id,
@@ -233,13 +229,4 @@ export const resetPassword = async (prevState: any, formData: FormData) => {
       },
     };
   }
-  // if (!token) {
-  //   return {};
-  // }
-  // await auth.api.resetPassword({
-  //   body: {
-  //     newPassword: password,
-  //     token,
-  //   },
-  // });
 };

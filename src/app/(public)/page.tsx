@@ -1,4 +1,4 @@
-import { getSession } from "@/actions/auth-action";
+import { getSession } from "@/actions/util-action";
 import LandingPage from "@/components/pages/landing";
 
 export default async function Landing() {

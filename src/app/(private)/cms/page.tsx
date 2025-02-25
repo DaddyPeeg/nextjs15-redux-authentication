@@ -1,4 +1,4 @@
-import { isAuth } from "@/actions/auth-action";
+import { isAuth } from "@/actions/util-action";
 import CMS from "@/components/pages/private/CMS";
 import FileManagerWrapper from "@/components/pages/private/CMS/FileManagerWrapper";
 import ImageUploader from "@/components/pages/private/CMS/ImageUploader";

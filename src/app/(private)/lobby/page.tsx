@@ -1,4 +1,4 @@
-import { isAuth } from "@/actions/auth-action";
+import { isAuth } from "@/actions/util-action";
 import Lobby from "@/components/pages/private/Lobby";
 import { redirect } from "next/navigation";
 

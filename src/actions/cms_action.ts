@@ -5,7 +5,7 @@ import { files_folder_table } from "@/db/schema/file_folder_schema";
 import { Files_Folders, Roles } from "@/types";
 import { eq, inArray } from "drizzle-orm";
 import { revalidateTag, unstable_cache } from "next/cache";
-import { getSession, isAuth } from "./auth-action";
+import { getSession, isAuth } from "./util-action";
 import { hasPermission } from "@/lib/RBAC";
 
 export const getAllFilesAndFolders = unstable_cache(
