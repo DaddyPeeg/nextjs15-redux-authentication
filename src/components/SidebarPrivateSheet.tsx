@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ProfilePic } from "./Avatar";
 import { hasPermission } from "@/lib/RBAC";
+import { Roles } from "@/types";
 
 const SidebarPrivateSheet = () => {
   const pathname = usePathname();
@@ -49,8 +50,9 @@ const SidebarPrivateSheet = () => {
               if (
                 !navitem.admin ||
                 (navitem.label === "Lessons" &&
-                  hasPermission(session!, "view:lessons")) ||
-                (navitem.label === "CMS" && hasPermission(session!, "view:cms"))
+                  hasPermission(session?.role as Roles, "view:lessons")) ||
+                (navitem.label === "CMS" &&
+                  hasPermission(session?.role as Roles, "view:cms"))
               )
                 return (
                   <Link href={navitem.href} key={`navitem-${key}`}>

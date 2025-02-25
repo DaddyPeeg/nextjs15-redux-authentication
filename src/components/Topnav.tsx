@@ -10,6 +10,7 @@ import { RootState } from "@/redux/store";
 import { hasPermission } from "@/lib/RBAC";
 import Logo from "./Logo";
 import SidebarPrivateSheet from "./SidebarPrivateSheet";
+import { Roles } from "@/types";
 
 export const links = [
   {
@@ -50,10 +51,11 @@ const Topnav = () => {
             {links.map((link, linkKey) => {
               if (
                 !link.admin ||
-                (link.label === "CMS" && hasPermission(user!, "view:cms")) ||
+                (link.label === "CMS" &&
+                  hasPermission(user?.role as Roles, "view:cms")) ||
                 (link.label === "Lessons" &&
-                  (hasPermission(user!, "view:cms") ||
-                    hasPermission(user!, "view:lessons")))
+                  (hasPermission(user?.role as Roles, "view:cms") ||
+                    hasPermission(user?.role as Roles, "view:lessons")))
               ) {
                 return (
                   <Link
