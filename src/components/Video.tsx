@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
@@ -36,6 +38,8 @@ const Video: React.FC<VideoProps> = ({
     : "";
 
   useEffect(() => {
+    if (!videoRef.current) return;
+    const video = videoRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -45,13 +49,13 @@ const Video: React.FC<VideoProps> = ({
       { threshold: 0.1 }
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    if (video) {
+      observer.observe(video);
     }
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (video) {
+        observer.unobserve(video);
       }
     };
   }, []);

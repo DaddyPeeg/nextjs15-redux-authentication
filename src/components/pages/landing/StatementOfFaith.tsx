@@ -1,52 +1,50 @@
-import ImageWithLoader from "@/components/ImageWithLoader";
 import { ParallaxScrollDemo } from "@/components/ParallaxImage";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import React from "react";
 
-const images = [
-  {
-    image: "",
-    x: -8,
-    y: 0,
-    width: `${30 * 16}px`,
-    height: `${20 * 16}px`,
-    zIndex: 1,
-  },
-  {
-    image: "",
-    x: -20,
-    y: -10,
-    width: `${20 * 16}px`,
-    height: `${20 * 16}px`,
-    zIndex: 2,
-  },
-  {
-    image: "",
-    x: -8,
-    y: -25,
-    width: `${38 * 16}px`,
-    height: `${24 * 16}px`,
-    zIndex: 1,
-  },
-  {
-    image: "",
-    x: -35,
-    y: -26,
-    width: `${25 * 16}px`,
-    height: `${20 * 16}px`,
-    zIndex: 1,
-  },
-  {
-    image: "",
-    x: -30,
-    y: -5,
-    width: `${20 * 16}px`,
-    height: `${30 * 16}px`,
-    zIndex: 1,
-  },
-];
+// const images = [
+//   {
+//     image: "",
+//     x: -8,
+//     y: 0,
+//     width: `${30 * 16}px`,
+//     height: `${20 * 16}px`,
+//     zIndex: 1,
+//   },
+//   {
+//     image: "",
+//     x: -20,
+//     y: -10,
+//     width: `${20 * 16}px`,
+//     height: `${20 * 16}px`,
+//     zIndex: 2,
+//   },
+//   {
+//     image: "",
+//     x: -8,
+//     y: -25,
+//     width: `${38 * 16}px`,
+//     height: `${24 * 16}px`,
+//     zIndex: 1,
+//   },
+//   {
+//     image: "",
+//     x: -35,
+//     y: -26,
+//     width: `${25 * 16}px`,
+//     height: `${20 * 16}px`,
+//     zIndex: 1,
+//   },
+//   {
+//     image: "",
+//     x: -30,
+//     y: -5,
+//     width: `${20 * 16}px`,
+//     height: `${30 * 16}px`,
+//     zIndex: 1,
+//   },
+// ];
 
 const StatementOfFaith = () => {
   return (

@@ -183,7 +183,7 @@ export function FileManager({ files }: { files: Files_Folders }) {
           >
             Root
           </Button>
-          {currentPath.map((folder, index) => (
+          {currentPath.map((folder) => (
             <React.Fragment key={folder.id}>
               <span>/</span>
               <Button

@@ -66,7 +66,7 @@ export const SkeletonThree = () => {
 
   useEffect(() => {
     if (!isClient) setIsClient(true);
-  }, []);
+  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
   return (
     <div className="relative flex bg-neutral-900 text-white flex-col items-start h-full overflow-hidden">
       <Image

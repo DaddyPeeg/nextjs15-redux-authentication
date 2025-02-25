@@ -18,8 +18,9 @@ const Signup = () => {
         callbackURL: "/lobby",
       },
       {
-        onError: (ctx: any) => {
-          console.error(ctx.error.message ?? "Something went wrong.");
+        onError: (ctx: unknown) => {
+          const err = ctx as { error: { message: string } };
+          console.error(err.error.message ?? "Something went wrong.");
         },
       }
     );

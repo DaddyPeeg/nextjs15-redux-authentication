@@ -6,7 +6,7 @@ import React, { useEffect, useRef } from "react";
 import { FaCross, FaPrayingHands, FaSearch } from "react-icons/fa";
 import { BsChatRightDotsFill } from "react-icons/bs";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Menu } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SidebarSheet from "@/components/SidebarSheet";
 import Logo from "@/components/Logo";
 import { AuthSession } from "@/types";

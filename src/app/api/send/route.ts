@@ -7,7 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
-    const { to_name, to, subject, text, url } = await req.json();
+    const { to_name, subject, text, url } = await req.json();
 
     const { data, error } = await resend.emails.send({
       from: "confirmation@resend.dev",

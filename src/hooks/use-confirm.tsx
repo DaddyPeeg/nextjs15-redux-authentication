@@ -24,7 +24,7 @@ export const useConfirm = (
   } | null>(null);
 
   const confirm = () =>
-    new Promise((resolve, reject) => {
+    new Promise((resolve) => {
       setPromise({ resolve });
     });
 
@@ -43,7 +43,7 @@ export const useConfirm = (
   };
 
   const ConfirmationDialog = () => (
-    <Dialog open={promise !== null} onOpenChange={(e) => setPromise(null)}>
+    <Dialog open={promise !== null} onOpenChange={() => setPromise(null)}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>

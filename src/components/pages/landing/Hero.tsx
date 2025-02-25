@@ -1,10 +1,8 @@
 "use client";
 
 import ImageLoading from "@/components/Image";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { animate, AnimatePresence, motion } from "motion/react";
-import { exit } from "process";
+import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect, useState } from "react";
 
 const slides = [
@@ -55,7 +53,7 @@ const Hero = () => {
     });
   };
 
-  const handleChangeItem = (e: any) => {
+  const handleChangeItem = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e?.target?.value?.split("-");
     setCurrentSlide(parseInt(val[1]));
   };
@@ -69,14 +67,14 @@ const Hero = () => {
     });
   };
 
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => {
-      if (prev <= 0) {
-        return slides.length - 1;
-      }
-      return prev - 1;
-    });
-  };
+  // const handlePrevSlide = () => {
+  //   setCurrentSlide((prev) => {
+  //     if (prev <= 0) {
+  //       return slides.length - 1;
+  //     }
+  //     return prev - 1;
+  //   });
+  // };
 
   useEffect(() => {
     preloadImages(slides.map((slide) => slide.image));

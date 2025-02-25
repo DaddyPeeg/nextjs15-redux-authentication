@@ -1,5 +1,4 @@
 import {
-  int,
   text,
   index,
   singlestoreTableCreator,

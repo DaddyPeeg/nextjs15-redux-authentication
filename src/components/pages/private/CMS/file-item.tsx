@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  AnchorHTMLAttributes,
-  ReactNode,
-  useOptimistic,
-  useState,
-  useTransition,
-} from "react";
+import { ReactNode, useState, useTransition } from "react";
 import { File, Folder, MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FileItem as FileItemType } from "./file-manager";
 import { cn } from "@/lib/utils";
-import { Files_Folders } from "@/types";
 
 type FileItemProps = {
   confirm: () => Promise<unknown>;

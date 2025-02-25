@@ -39,13 +39,13 @@ const Lobby = () => {
                 </span>
               </h1>
               <p className="mt-2 text-center md:text-start text-base leading-tight">
-                We{"’"}re so glad you{"’"}re here! May this be a place of peace,
-                faith, and fellowship. Join us in worship and community as we
-                grow together in Christ.
+                We&quot;re so glad you&quot;re here! May this be a place of
+                peace, faith, and fellowship. Join us in worship and community
+                as we grow together in Christ.
               </p>
               <p className="text-center md:text-start italic mt-2 text-sm">
-                "For where two or three gather in my name, there am I with
-                them." {"–"} Matthew 18:20
+                &ldquo;For where two or three gather in my name, there am I with
+                them.&rdquo; &quot; Matthew 18:20
               </p>
             </section>
             <section>
@@ -104,7 +104,7 @@ const Lobby = () => {
               <div className="mt-4 grid gap-4 sm:grid-cols-3">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Children's Ministry</CardTitle>
+                    <CardTitle>Children&quot;s Ministry</CardTitle>
                   </CardHeader>
                   <CardContent>
                     Nurturing young hearts in faith and fun.
@@ -149,8 +149,8 @@ const Lobby = () => {
                 <li className="flex items-center space-x-2">
                   <ChevronRight className="h-4 w-4 text-muted-foreground" />
                   <span>
-                    House-to-house visitation! Sign up if you'd like us to visit
-                    you.
+                    House-to-house visitation! Sign up if you&quot;d like us to
+                    visit you.
                   </span>
                 </li>
               </ul>
@@ -160,7 +160,7 @@ const Lobby = () => {
                 New Here?
               </h2>
               <p className="mt-2 text-muted-foreground">
-                We'd love to get to know you! Fill out our visitor card and
+                We&quot;d love to get to know you! Fill out our visitor card and
                 receive a free welcome gift.
               </p>
               <Button className="mt-4">Get Connected</Button>

@@ -2,21 +2,13 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 
 interface ImageProps {
   src: string;
   alt: string;
-  // width?: string;
-  // height?: string;
 }
 
-const ImageLoading: React.FC<ImageProps> = ({
-  src,
-  alt,
-  // width = "100%",
-  // height = "100%",
-}) => {
+const ImageLoading: React.FC<ImageProps> = ({ src, alt }) => {
   const [loading, setLoading] = useState(true);
 
   const handleImageLoad = () => {

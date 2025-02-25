@@ -2,7 +2,7 @@
 import { resetPassword } from "@/actions/user-actions";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
-import { useState, FormEvent, useActionState } from "react";
+import { useActionState } from "react";
 
 interface ForgotPasswordFormProps {
   token: string;

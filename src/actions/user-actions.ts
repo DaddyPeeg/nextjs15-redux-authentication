@@ -6,7 +6,7 @@ import { loginSchema, passwordSchema, signupSchema } from "@/types";
 import { account, user } from "@/db/schema/auth-schema";
 import { and, eq } from "drizzle-orm";
 
-export const login = async (prevState: any, formData: FormData) => {
+export const login = async (prevState: unknown, formData: FormData) => {
   const data = Object.fromEntries(formData);
   try {
     const validatedFields = loginSchema.safeParse(data);
@@ -81,10 +81,11 @@ export const login = async (prevState: any, formData: FormData) => {
     return {
       success: true,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as { message: string; cause: { message: string } };
     return {
       success: false,
-      error: { message: error?.cause?.message ?? error.message },
+      error: { message: err.cause.message ?? err.message },
       prevData: {
         email: data.email,
         password: data.password,
@@ -93,7 +94,7 @@ export const login = async (prevState: any, formData: FormData) => {
   }
 };
 
-export const signup = async (prevState: any, formData: FormData) => {
+export const signup = async (prevState: unknown, formData: FormData) => {
   const data = Object.fromEntries(formData);
   try {
     const validatedFields = signupSchema.safeParse(data);
@@ -118,10 +119,11 @@ export const signup = async (prevState: any, formData: FormData) => {
         name: data.name as string,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as { message: string; cause: { message: string } };
     return {
       success: false,
-      error: { message: error?.cause?.message ?? error.message },
+      error: { message: err.cause.message ?? err.message },
       prevData: {
         email: data.email,
         password: data.password,
@@ -131,7 +133,10 @@ export const signup = async (prevState: any, formData: FormData) => {
   }
 };
 
-export const forgotPassword = async (prevState: any, formData: FormData) => {
+export const forgotPassword = async (
+  prevState: unknown,
+  formData: FormData
+) => {
   const data = Object.fromEntries(formData);
   try {
     const validatedFields = loginSchema.pick({ email: true }).safeParse(data);
@@ -178,10 +183,11 @@ export const forgotPassword = async (prevState: any, formData: FormData) => {
       success: true,
       message: "Please check your email for a password reset instruction.",
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as { message: string; cause: { message: string } };
     return {
       success: false,
-      error: { message: error?.cause?.message ?? error.message },
+      error: { message: err.cause.message ?? err.message },
       prevData: {
         email: data.email,
       },
@@ -189,7 +195,7 @@ export const forgotPassword = async (prevState: any, formData: FormData) => {
   }
 };
 
-export const resetPassword = async (prevState: any, formData: FormData) => {
+export const resetPassword = async (prevState: unknown, formData: FormData) => {
   const data = Object.fromEntries(formData);
   try {
     const validatedFields = passwordSchema.safeParse(data);
@@ -218,10 +224,11 @@ export const resetPassword = async (prevState: any, formData: FormData) => {
     return {
       success: true,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as { message: string; cause: { message: string } };
     return {
       success: false,
-      error: { message: error?.cause?.message ?? error.message },
+      error: { message: err.cause.message ?? err.message },
       prevData: {
         token: data.token,
         password: data.password,

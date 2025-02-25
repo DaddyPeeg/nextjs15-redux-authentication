@@ -20,8 +20,9 @@ const Login = () => {
         callbackURL: "/lobby",
       },
       {
-        onError: (ctx: any) => {
-          console.error(ctx.error.message ?? "Something went wrong.");
+        onError: (ctx: unknown) => {
+          const err = ctx as { error: { message: string } };
+          console.error(err.error.message ?? "Something went wrong.");
         },
       }
     );
@@ -140,7 +141,7 @@ const Login = () => {
               </button>
             </div>
             <p className="text-sm text-center mt-2 text-black ">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/signup" className="text-blue-600 hover:underline">
                 Sign up
               </Link>

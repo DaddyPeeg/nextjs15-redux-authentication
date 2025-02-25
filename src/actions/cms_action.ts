@@ -20,10 +20,12 @@ export const getAllFilesAndFolders = unstable_cache(
 
       const results = await db.select().from(files_folder_table);
       return results;
-    } catch (error: any) {
-      console.error("Error fetching data:", error.message);
+    } catch (error: unknown) {
+      console.error("Error fetching data:", error);
       throw new Error(
-        `Failed to fetch files and folders. Please try again.: ${error.message}`
+        `Failed to fetch files and folders. Please try again.: ${String(
+          (error as Error)?.message || error
+        )}`
       );
     }
   },
@@ -38,10 +40,12 @@ export const refreshGetAllFilesAndFolders = async () => {
 
     const results = await db.select().from(files_folder_table);
     return results;
-  } catch (error: any) {
-    console.error("Error fetching data:", error.message);
+  } catch (error: unknown) {
+    console.error("Error fetching data:", error);
     throw new Error(
-      `Failed to refetch files and folders. Please try again.: ${error.message}`
+      `Failed to refetch files and folders. Please try again.: ${String(
+        (error as Error)?.message || error
+      )}`
     );
   }
 };
@@ -63,10 +67,12 @@ export const createNewFileFolder = async (file: {
       .$returningId()
       .then((val) => val[0]);
     revalidateTag("filesfolders");
-  } catch (error: any) {
-    console.error("Error Creating File/Folder:", error.message);
+  } catch (error: unknown) {
+    console.error("Error Creating File/Folder:", error);
     throw new Error(
-      `Failed to create File / Folder. Please try again.: ${error.message}`
+      `Failed to create File / Folder. Please try again.: $${String(
+        (error as Error)?.message || error
+      )}`
     );
   }
 };
@@ -86,10 +92,12 @@ export const deleteFileFolder = async (id: number, data?: Files_Folders) => {
     await db.delete(files_folder_table).where(eq(files_folder_table.id, id));
 
     revalidateTag("filesfolders");
-  } catch (error: any) {
-    console.error("Error Deleting File/Folder:", error.message);
+  } catch (error: unknown) {
+    console.error("Error Deleting File/Folder:", error);
     throw new Error(
-      `Failed to Delete File / Folder. Please try again.: ${error.message}`
+      `Failed to Delete File / Folder. Please try again.: $${String(
+        (error as Error)?.message || error
+      )}`
     );
   }
 };
@@ -104,10 +112,12 @@ export const renameFileFolder = async (id: number, name: string) => {
       .set({ name })
       .where(eq(files_folder_table.id, id));
     revalidateTag("filesfolders");
-  } catch (error: any) {
-    console.error("Error Renaming File/Folder:", error.message);
+  } catch (error: unknown) {
+    console.error("Error Renaming File/Folder:", error);
     throw new Error(
-      `Failed to Rename File / Folder. Please try again.: ${error.message}`
+      `Failed to Rename File / Folder. Please try again.: $${String(
+        (error as Error)?.message || error
+      )}`
     );
   }
 };

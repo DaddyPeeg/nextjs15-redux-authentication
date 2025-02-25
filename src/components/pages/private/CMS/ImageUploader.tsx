@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -61,9 +62,10 @@ export default function ImageUploader() {
         {images.map((image) => (
           <div key={image.id} className="flex gap-6 p-4 border rounded-lg">
             <div className="w-48 h-48 relative group">
-              <img
+              <Image
                 src={image.preview}
                 alt={image.title || "Preview"}
+                fill
                 className="w-full h-full object-cover rounded-lg"
               />
               <button
