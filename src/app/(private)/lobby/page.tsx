@@ -1,12 +1,9 @@
-import { getSession } from "@/actions/auth-action";
+import { isAuth } from "@/actions/auth-action";
 import Lobby from "@/components/pages/private/Lobby";
 import { redirect } from "next/navigation";
 
 export default async function LobbyPage() {
-  // const session = await getSession();
-
-  // if (!session) {
-  //   redirect("/login");
-  // }
+  const { auth } = await isAuth();
+  if (!auth) redirect("/login");
   return <Lobby />;
 }

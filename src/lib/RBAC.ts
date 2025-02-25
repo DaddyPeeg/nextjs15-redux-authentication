@@ -1,4 +1,4 @@
-import { CurrentAuthUserState, Roles } from "@/types";
+import { Roles } from "@/types";
 
 type Permission = (typeof ROLES)[Roles][number];
 
@@ -8,12 +8,8 @@ const ROLES = {
   visitor: [],
 } as const;
 
-export function hasPermission(
-  user: CurrentAuthUserState,
-  permission: Permission
-) {
-  if (!user) return false;
-  const role = user.role;
+export function hasPermission(role: Roles, permission: Permission) {
+  if (!role) return false;
   return (ROLES[role] as readonly Permission[]).includes(permission);
 }
 

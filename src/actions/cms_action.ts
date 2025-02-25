@@ -2,13 +2,22 @@
 
 import { db } from "@/db";
 import { files_folder_table } from "@/db/schema/file_folder_schema";
-import { Files_Folders } from "@/types";
+import { Files_Folders, Roles } from "@/types";
 import { eq, inArray } from "drizzle-orm";
 import { revalidateTag, unstable_cache } from "next/cache";
+import { getSession, isAuth } from "./auth-action";
+import { hasPermission } from "@/lib/RBAC";
 
 export const getAllFilesAndFolders = unstable_cache(
   async () => {
     try {
+      const session = await getSession();
+      if (
+        !session ||
+        !hasPermission(session?.user.role as Roles, "view:lessons")
+      )
+        throw Error("Permission Denied");
+
       const results = await db.select().from(files_folder_table);
       return results;
     } catch (error: any) {
@@ -24,6 +33,9 @@ export const getAllFilesAndFolders = unstable_cache(
 
 export const refreshGetAllFilesAndFolders = async () => {
   try {
+    const { admin } = await isAuth();
+    if (!admin) throw Error("Permission Denied");
+
     const results = await db.select().from(files_folder_table);
     return results;
   } catch (error: any) {
@@ -41,6 +53,8 @@ export const createNewFileFolder = async (file: {
   url: string | null;
 }) => {
   try {
+    const { admin } = await isAuth();
+    if (!admin) throw Error("Permission Denied");
     if (!file.name) throw Error("Please provide File/Folder name");
     // const data =
     await db
@@ -59,6 +73,8 @@ export const createNewFileFolder = async (file: {
 
 export const deleteFileFolder = async (id: number, data?: Files_Folders) => {
   try {
+    const { admin } = await isAuth();
+    if (!admin) throw Error("Permission Denied");
     if (data) {
       const ids = data?.map((item) => item.id);
       await db
@@ -80,6 +96,8 @@ export const deleteFileFolder = async (id: number, data?: Files_Folders) => {
 
 export const renameFileFolder = async (id: number, name: string) => {
   try {
+    const { admin } = await isAuth();
+    if (!admin) throw Error("Permission Denied");
     if (!id || !name) throw Error("Please provide File/Folder id and name");
     await db
       .update(files_folder_table)
