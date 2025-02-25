@@ -1,62 +1,112 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { FileList } from "./file-list";
-import { NewItemForm } from "./new-item-form";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, FolderPlus, RefreshCw } from "lucide-react";
+import NewFileDialog from "./new-file-dialog";
+import { Files_Folders } from "@/types";
+import {
+  createNewFileFolder,
+  deleteFileFolder,
+  refreshGetAllFilesAndFolders,
+  renameFileFolder,
+} from "@/actions/cms_action";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import Alert from "@/components/Alert";
+import { useConfirm } from "@/hooks/use-confirm";
 
-type FileItem = {
-  id: string;
+export type FileItem = {
+  id: number;
   name: string;
   type: "file" | "folder";
-  parentId: string | null;
+  parentId: number | null;
+  url: string | null;
+  createdAt: Date;
 };
 
-export function FileManager() {
-  const [items, setItems] = useState<FileItem[]>([
-    { id: "1", name: "Documents", type: "folder", parentId: null },
-    { id: "2", name: "Images", type: "folder", parentId: null },
-    { id: "3", name: "report.docx", type: "file", parentId: null },
-    { id: "4", name: "Work", type: "folder", parentId: "1" },
-    { id: "5", name: "Personal", type: "folder", parentId: "1" },
-    { id: "6", name: "budget.xlsx", type: "file", parentId: "1" },
-    { id: "7", name: "vacation.jpg", type: "file", parentId: "2" },
-    { id: "8", name: "profile.png", type: "file", parentId: "2" },
-    { id: "9", name: "project_plan.pdf", type: "file", parentId: "4" },
-    { id: "10", name: "todo.txt", type: "file", parentId: "5" },
-  ]);
-  const [currentFolder, setCurrentFolder] = useState<string | null>(null);
-  const [showNewItemForm, setShowNewItemForm] = useState(false);
+export function FileManager({ files }: { files: Files_Folders }) {
+  const [ConfirmDialog, confirm] = useConfirm(
+    "Are you sure",
+    "Deleting this item will also remove its children. Proceed?"
+  );
+  const [items, setItems] = useState<Files_Folders>(() => files);
+  const [currentFolder, setCurrentFolder] = useState<number | null>(() => {
+    const storedFolder = localStorage.getItem("currentFolder");
+    const parsedFolder =
+      storedFolder !== null && !isNaN(Number(storedFolder))
+        ? Number(storedFolder)
+        : null;
+    return parsedFolder;
+  });
+  const [isRefreshing, startRefreshing] = useTransition();
+  const [isCreating, startCreating] = useTransition();
 
-  const addItem = (name: string, type: "file" | "folder") => {
-    const newItem: FileItem = {
-      id: Date.now().toString(),
-      name,
-      type,
-      parentId: currentFolder,
-    };
-    setItems([...items, newItem]);
-    setShowNewItemForm(false);
+  const addItem = async (
+    name: string,
+    type: "file" | "folder",
+    url?: string
+  ) => {
+    startCreating(async () => {
+      try {
+        const newItem = {
+          name,
+          type,
+          parentId: currentFolder ? Number(currentFolder) : null,
+          url: type === "file" ? url || null : null,
+        };
+        await createNewFileFolder(newItem);
+      } catch (e) {
+        console.error(e);
+      }
+    });
   };
 
-  const renameItem = (id: string, newName: string) => {
-    setItems(
-      items.map((item) => (item.id === id ? { ...item, name: newName } : item))
-    );
+  const renameItem = async (id: number, newName: string) => {
+    try {
+      await renameFileFolder(id, newName);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  const deleteItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id && item.parentId !== id));
+  const deleteItem = async (id: number) => {
+    try {
+      const children = items.filter((files) => files.parentId === id);
+      if (children.length > 0) {
+        await deleteFileFolder(id, children);
+        return;
+      }
+      await deleteFileFolder(id);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  const navigateToFolder = (folderId: string | null) => {
+  const navigateToFolder = (folderId: number | null) => {
+    localStorage.setItem("currentFolder", `${folderId}`);
     setCurrentFolder(folderId);
   };
 
   const navigateBack = () => {
     const parentFolder = items.find((item) => item.id === currentFolder);
+    localStorage.setItem(
+      "currentFolder",
+      `${parentFolder ? parentFolder.parentId : null}`
+    );
     setCurrentFolder(parentFolder ? parentFolder.parentId : null);
+  };
+
+  const handleRefresh = async () => {
+    startRefreshing(async () => {
+      try {
+        const data = await refreshGetAllFilesAndFolders();
+        setItems(data);
+      } catch (e) {
+        console.log(e);
+      }
+    });
   };
 
   const getCurrentPath = () => {
@@ -76,14 +126,47 @@ export function FileManager() {
     return path;
   };
 
-  const currentItems = items.filter((item) => item.parentId === currentFolder);
+  const currentItems = items
+    .filter((item) => item.parentId === currentFolder)
+    .sort((a, b) => {
+      if (a.type !== b.type) {
+        return a.type === "folder" ? -1 : 1;
+      }
+
+      return a.name.localeCompare(b.name);
+    });
   const currentPath = getCurrentPath();
 
+  const isLoadingData = isRefreshing || isCreating;
+
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">File Manager</h1>
-        <Button onClick={() => setShowNewItemForm(true)}>New Item</Button>
+    <>
+      <div className="flex justify-between items-center mb-4 flex-col md:flex-row">
+        <h1 className="text-xl font-bold self-start md:self-auto">
+          File Manager
+        </h1>
+        <div className="flex items-center gap-2 self-start my-4 md:my-0 md:self-auto ">
+          <NewFileDialog isCreating={isLoadingData} addItem={addItem} />
+          <Button
+            onClick={() => addItem("New Folder", "folder")}
+            className="items-center"
+            disabled={isLoadingData}
+          >
+            New Folder <FolderPlus className="shrink-0 size-6" />
+          </Button>
+          <Button
+            disabled={isLoadingData}
+            onClick={handleRefresh}
+            variant="ghost"
+            size={"icon"}
+          >
+            <RefreshCw
+              className={cn("shrink-0 size-6 transition-transform", {
+                "animate-spin": isRefreshing,
+              })}
+            />
+          </Button>
+        </div>
       </div>
       <div className="flex items-center space-x-2 mb-4">
         <Button
@@ -116,18 +199,16 @@ export function FileManager() {
           ))}
         </div>
       </div>
-      {showNewItemForm && (
-        <NewItemForm
-          onSubmit={addItem}
-          onCancel={() => setShowNewItemForm(false)}
-        />
-      )}
       <FileList
+        confirm={confirm}
+        isCreating={isCreating}
+        isRefreshing={isRefreshing}
         items={currentItems}
         onRename={renameItem}
         onDelete={deleteItem}
         onNavigate={navigateToFolder}
       />
-    </div>
+      <ConfirmDialog />
+    </>
   );
 }

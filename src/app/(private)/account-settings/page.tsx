@@ -10,7 +10,7 @@ export default async function AccountSettingPage() {
     redirect("/login");
   }
   return (
-    <section className="flex-1 p-4">
+    <section className="flex-1 px-4 py-6">
       <div className="w-full max-w-7xl mx-auto">
         <h1>Account Settings Page</h1>
         <AccountSettings />

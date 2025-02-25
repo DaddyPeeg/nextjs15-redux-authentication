@@ -17,9 +17,10 @@ import { FilePlus } from "lucide-react";
 
 type Props = {
   addItem: (name: string, type: "file" | "folder", url?: string) => void;
+  isCreating: boolean;
 };
 
-const NewFileDialog = ({ addItem }: Props) => {
+const NewFileDialog = ({ addItem, isCreating }: Props) => {
   const [file, setFile] = useState({
     file_name: "",
     file_url: "",
@@ -42,7 +43,7 @@ const NewFileDialog = ({ addItem }: Props) => {
   return (
     <Dialog open={isOpen} onOpenChange={(e) => setIsOpen(e)}>
       <DialogTrigger asChild>
-        <Button className="items-center">
+        <Button className="items-center" disabled={isCreating}>
           New File <FilePlus className="shrink-0 size-6" />
         </Button>
       </DialogTrigger>

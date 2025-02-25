@@ -1,6 +1,12 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import {
+  AnchorHTMLAttributes,
+  ReactNode,
+  useOptimistic,
+  useState,
+  useTransition,
+} from "react";
 import { File, Folder, MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,31 +16,45 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { FileItem as FileItemType } from "./file-manager";
+import { cn } from "@/lib/utils";
+import { Files_Folders } from "@/types";
 
 type FileItemProps = {
-  item: {
-    id: string;
-    name: string;
-    type: "file" | "folder";
-    url?: string;
-  };
-  onRename: (id: string, newName: string) => void;
-  onDelete: (id: string) => void;
-  onNavigate: (id: string | null) => void;
+  confirm: () => Promise<unknown>;
+  item: FileItemType;
+  isCreating: boolean;
+  onRename: (id: number, newName: string) => void;
+  onDelete: (id: number) => void;
+  onNavigate: (id: number | null) => void;
 };
 
 export function FileItem({
+  confirm,
   item,
+  isCreating,
   onRename,
   onDelete,
   onNavigate,
 }: FileItemProps) {
   const [isRenaming, setIsRenaming] = useState(false);
   const [newName, setNewName] = useState(item.name);
+  const [isDeletingRenaming, startDeletingRenaming] = useTransition();
 
   const handleRename = () => {
-    onRename(item.id, newName);
+    startDeletingRenaming(async () => {
+      onRename(item.id, newName);
+      setNewName("");
+    });
     setIsRenaming(false);
+  };
+
+  const handleDelete = async (id: number) => {
+    const ok = await confirm();
+    if (!ok) return;
+    startDeletingRenaming(async () => {
+      onDelete(id);
+    });
   };
 
   const handleItemClick = () => {
@@ -43,10 +63,19 @@ export function FileItem({
     }
   };
 
+  const isLoading = isCreating || isDeletingRenaming;
+
   return (
-    <OpenFileLink type={item.type} url={item.url}>
+    <OpenFileLink
+      isDeletingRenaming={isLoading}
+      type={item.type}
+      url={item.url ?? undefined}
+    >
       <div
-        className="flex items-center justify-between p-2 hover:bg-gray-100 rounded cursor-pointer"
+        className={cn(
+          "flex items-center justify-between p-2 hover:bg-gray-100 rounded cursor-pointer pointer-events-auto",
+          { "text-neutral-400 pointer-events-none": isLoading }
+        )}
         onClick={handleItemClick}
       >
         <div className="flex items-center space-x-2">
@@ -61,7 +90,7 @@ export function FileItem({
               onClick={(e) => e.stopPropagation()}
             />
           ) : (
-            <span>{item.name}</span>
+            <span>{newName || item.name}</span>
           )}
         </div>
         <DropdownMenu>
@@ -79,6 +108,7 @@ export function FileItem({
               onClick={(e) => {
                 e.stopPropagation();
                 setIsRenaming(true);
+                setNewName(item.name);
               }}
             >
               Rename
@@ -86,7 +116,7 @@ export function FileItem({
             <DropdownMenuItem
               onClick={(e) => {
                 e.stopPropagation();
-                onDelete(item.id);
+                handleDelete(item.id);
               }}
             >
               Delete
@@ -102,14 +132,25 @@ const OpenFileLink = ({
   type,
   url,
   children,
+  isDeletingRenaming,
+  ...props
 }: {
   type: "file" | "folder";
   url?: string;
+  isDeletingRenaming: boolean;
   children: ReactNode;
 }) => {
   if (type === "file" && url)
     return (
-      <a target="_blank" rel="noopener noreferrer" href={url}>
+      <a
+        className={cn("", {
+          "pointer-events-none": isDeletingRenaming,
+        })}
+        {...props}
+        target="_blank"
+        rel="noopener noreferrer"
+        href={url}
+      >
         {children}
       </a>
     );

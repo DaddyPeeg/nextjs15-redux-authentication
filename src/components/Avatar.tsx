@@ -11,14 +11,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Props = {
   name: string;
   src: string;
+  closeNavOnSelect?: () => void;
 };
 
-export function ProfilePic({ name, src }: Props) {
+export function ProfilePic({ name, src, closeNavOnSelect }: Props) {
   const router = useRouter();
   const handleLogout = async () => {
     await authClient.signOut({
@@ -41,7 +42,9 @@ export function ProfilePic({ name, src }: Props) {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <Link href={"/account-settings"} prefetch>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem onClick={closeNavOnSelect}>
+            Settings
+          </DropdownMenuItem>
         </Link>
         <DropdownMenuItem
           onClick={handleLogout}

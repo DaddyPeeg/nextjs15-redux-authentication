@@ -78,6 +78,7 @@ const SidebarPrivateSheet = () => {
               </div>
 
               <ProfilePic
+                closeNavOnSelect={handleSelect}
                 name={session?.id || "test-profile"}
                 src={
                   session?.picture || "https://avatar.iran.liara.run/public/6"

@@ -8,6 +8,13 @@
       "when": 1739927050218,
       "tag": "0000_left_tinkerer",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "1",
+      "when": 1740193582894,
+      "tag": "0001_workable_franklin_richards",
+      "breakpoints": true
     }
   ]
 }

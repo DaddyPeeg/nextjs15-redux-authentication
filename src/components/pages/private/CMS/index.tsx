@@ -1,10 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import { FileManager } from "./DriveStyleFileManager";
-import ImageUploader from "./ImageUploader";
+import React, { JSX, useState } from "react";
 
-function CMS() {
+function CMS({
+  fileManager,
+  imageUploader,
+}: {
+  fileManager: JSX.Element;
+  imageUploader: JSX.Element;
+}) {
   const [activeTab, setActiveTab] = useState<"files" | "slider">("files");
 
   return (
@@ -39,7 +43,7 @@ function CMS() {
             </nav>
           </div>
         </div>
-        {activeTab === "files" ? <FileManager /> : <ImageUploader />}
+        {activeTab === "files" ? fileManager : imageUploader}
       </div>
     </div>
   );

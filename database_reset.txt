@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS "table_name";
+
+
+INSERT INTO cfc_g12_cms_files_folder_table (name, type, parent_id, url) VALUES
+('Documents', 'folder', NULL, NULL),
+('Images', 'folder', 4, NULL),
+('report.docx', 'file', NULL, ''),
+('Work', 'folder', 1, NULL),
+('Personal', 'folder', 1, NULL),
+('budget.xlsx', 'file', 1, 'https://drive.google.com/file/d/1zy8geltszvhf2dV1Nei6t603WfqlV_My/view'),
+('vacation.jpg', 'file', 2, ''),
+('profile.png', 'file', 2, ''),
+('project_plan.pdf', 'file', 4, 'https://drive.google.com/file/d/1zy8geltszvhf2dV1Nei6t603WfqlV_My/view'),
+('todo.txt', 'file', 5, 'https://drive.google.com/file/d/1zy8geltszvhf2dV1Nei6t603WfqlV_My/view');
+
+
+UPDATE cfc_g12_auth_user
+SET role = 'admin'
+WHERE email = 'david.estrelloso.tribugenia@gmail.com';
