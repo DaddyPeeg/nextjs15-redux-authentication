@@ -1,10 +1,11 @@
 import { getAllFilesAndFolders } from "@/actions/cms_action";
 import React from "react";
-import { FileManager } from "./file-manager";
+import { Roles } from "@/types";
+import ClientOnlyWrapper from "./client-only-wrapper";
 
-const FileManagerWrapper = async () => {
-  const files = await getAllFilesAndFolders();
-  return <FileManager key={JSON.stringify(files)} files={files} />;
+const FileManagerWrapper = async ({ role }: { role: Roles }) => {
+  const files = await getAllFilesAndFolders(role);
+  return <ClientOnlyWrapper key={JSON.stringify(files)} files={files} />;
 };
 
 export default FileManagerWrapper;

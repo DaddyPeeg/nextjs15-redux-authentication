@@ -5,17 +5,13 @@ import { files_folder_table } from "@/db/schema/file_folder_schema";
 import { Files_Folders, Roles } from "@/types";
 import { eq, inArray } from "drizzle-orm";
 import { revalidateTag, unstable_cache } from "next/cache";
-import { getSession, isAuth } from "./util-action";
+import { isAuth } from "./util-action";
 import { hasPermission } from "@/lib/RBAC";
 
 export const getAllFilesAndFolders = unstable_cache(
-  async () => {
+  async (role: Roles | null) => {
     try {
-      const session = await getSession();
-      if (
-        !session ||
-        !hasPermission(session?.user.role as Roles, "view:lessons")
-      )
+      if (!role || !hasPermission(role as Roles, "view:lessons"))
         throw Error("Permission Denied");
 
       const results = await db.select().from(files_folder_table);

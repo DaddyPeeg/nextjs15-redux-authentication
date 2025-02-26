@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { FileList } from "./file-list";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, FolderPlus, RefreshCw } from "lucide-react";
@@ -14,6 +14,7 @@ import {
 } from "@/actions/cms_action";
 import { cn } from "@/lib/utils";
 import { useConfirm } from "@/hooks/use-confirm";
+import { useLocalStorage } from "usehooks-ts";
 
 export type FileItem = {
   id: number;
@@ -30,14 +31,11 @@ export function FileManager({ files }: { files: Files_Folders }) {
     "Deleting this item will also remove its children. Proceed?"
   );
   const [items, setItems] = useState<Files_Folders>(() => files);
-  const [currentFolder, setCurrentFolder] = useState<number | null>(() => {
-    const storedFolder = localStorage.getItem("currentFolder");
-    const parsedFolder =
-      storedFolder !== null && !isNaN(Number(storedFolder))
-        ? Number(storedFolder)
-        : null;
-    return parsedFolder;
-  });
+  const [currentFolder, setCurrentFolder] = useLocalStorage<number | null>(
+    "currentFolder",
+    null
+  );
+
   const [isRefreshing, startRefreshing] = useTransition();
   const [isCreating, startCreating] = useTransition();
 
@@ -83,16 +81,11 @@ export function FileManager({ files }: { files: Files_Folders }) {
   };
 
   const navigateToFolder = (folderId: number | null) => {
-    localStorage.setItem("currentFolder", `${folderId}`);
     setCurrentFolder(folderId);
   };
 
   const navigateBack = () => {
     const parentFolder = items.find((item) => item.id === currentFolder);
-    localStorage.setItem(
-      "currentFolder",
-      `${parentFolder ? parentFolder.parentId : null}`
-    );
     setCurrentFolder(parentFolder ? parentFolder.parentId : null);
   };
 
