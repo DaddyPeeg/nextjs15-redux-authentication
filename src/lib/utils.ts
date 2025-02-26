@@ -1,3 +1,7 @@
+import {
+  WebsiteElement,
+  WebsiteStructure,
+} from "@/types/bulletin-builder-types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -17,20 +21,3 @@ export const debounce = <T extends (...args: any[]) => void>(
   };
 };
 /* eslint-enable @typescript-eslint/no-explicit-any */
-
-export const setItem = (key: string, value: unknown) => {
-  try {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getItem = (key: string) => {
-  try {
-    const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : undefined;
-  } catch (error) {
-    console.log(error);
-  }
-};
