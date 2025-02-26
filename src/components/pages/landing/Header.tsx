@@ -170,7 +170,7 @@ const Header = ({ session }: { session?: AuthSession }) => {
       className="fixed z-30 top-0 w-full transition duration-500"
       id="header-comp"
     >
-      <header className="flex items-center top-0 w-full py-4 px-4 text-white max-w-[110rem] mx-auto justify-between ">
+      <header className="flex items-center top-0 w-full py-4 px-4 text-white max-w-7xl mx-auto justify-between ">
         <Logo handleClick={() => selectNav("Explore", 0)} />
         <nav>
           <SidebarSheet session={session} />

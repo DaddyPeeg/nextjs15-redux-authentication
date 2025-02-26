@@ -80,9 +80,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     <CarouselContext.Provider
       value={{ onCardClose: handleCardClose, currentIndex }}
     >
-      <div className="relative w-full p-2 lg:p-8 pt-0">
+      <div className="relative w-full p-0 lg:p-6 pt-0">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto  scroll-smooth [scrollbar-width:none] rounded-3xl pb-2 lg:pb-8"
+          className="flex w-full overflow-x-scroll overscroll-x-auto  scroll-smooth [scrollbar-width:none] lg:rounded-3xl pb-2 lg:pb-8"
           ref={carouselRef}
           onScroll={checkScrollability}
         >

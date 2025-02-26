@@ -51,12 +51,14 @@ const StatementOfFaith = () => {
     <section
       data-landing-sections
       id="statement_of_faith"
-      className="w-full min-h-screen bg-neutral-100 scroll-mt-[8rem]"
+      className="w-full min-h-screen bg-neutral-100 scroll-mt-[4rem] lg:scroll-mt-[8rem]"
     >
       {/* <AuroraBackground> */}
-      <div className="w-full py-8 max-w-[110rem] gap-2 lg:gap-16 flex px-4 lg:flex-row flex-col mx-auto relative">
-        <div className="bg-neutral-900/30 w-[60rem] h-full absolute blur-[10rem] rounded-full right-0 hidden lg:block" />
-        <div className="w-full max-w-xl text-center lg:text-start mx-auto">
+      <div className="w-full py-8 max-w-7xl gap-2 lg:gap-16 flex px-4 lg:flex-row flex-col mx-auto relative isolate overflow-hidden">
+        <div className="h-full absolute w-64 bg-gradient-to-r from-transparent via-neutral-100/50  to-neutral-100 top-0 right-0 z-10 pointer-events-none lg:block hidden " />
+        <div className="h-64 absolute  w-[calc(50%+5rem)] bg-gradient-to-b from-transparent to-neutral-100 bottom-0 right-0 z-10 pointer-events-none lg:block hidden " />
+
+        <div className="w-full max-w-xl mx-auto lg:mx-0 text-center lg:text-start">
           <h1 className="text-2xl lg:text-6xl font-bold">Statement of Faith</h1>
           <h3 className="text-base lg:text-xl">
             Our Core Beliefs: A Foundation of Faith
@@ -96,7 +98,7 @@ const StatementOfFaith = () => {
             <ArrowRight className="shrink-0 ml-1" />
           </Button>
         </div>
-        <div className="flex-1 relative isolate lg:block hidden">
+        <div className="flex-1 absolute isolate -z-[1] lg:block hidden w-full h-full left-1/2 -translate-x-[calc(50%-30rem)]  top-1/2 -translate-y-1/2">
           <ParallaxScrollDemo />
         </div>
       </div>

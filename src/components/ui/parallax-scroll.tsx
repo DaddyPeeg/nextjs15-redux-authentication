@@ -14,7 +14,7 @@ export const ParallaxScroll = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState<[`${number}px start`, "end end"]>([
-    "200px start",
+    "400px start",
     "end end",
   ]);
 
@@ -31,7 +31,7 @@ export const ParallaxScroll = ({
   });
 
   const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -400]);
-  const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 0]);
+  const translateSecond = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const translateThird = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   const third = Math.ceil(images.length / 3);
