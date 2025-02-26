@@ -1,8 +1,8 @@
 import { getSession } from "@/actions/util-action";
 import CMS from "@/components/pages/private/CMS";
-import FileManagerWrapper from "@/components/pages/private/CMS/FileManagerWrapper";
-import ImageUploader from "@/components/pages/private/CMS/ImageUploader";
-import LoadingFileManager from "@/components/pages/private/CMS/loading-file-manager";
+import FileManagerWrapper from "@/components/pages/private/CMS/FileManager/FileManagerWrapper";
+import ImageUploader from "@/components/pages/private/CMS/BulletinManager/ImageUploader";
+import LoadingFileManager from "@/components/pages/private/CMS/FileManager/loading-file-manager";
 import { Roles } from "@/types";
 import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
