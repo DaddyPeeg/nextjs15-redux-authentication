@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 interface VideoProps {
   src: string;
@@ -33,6 +35,7 @@ const Video: React.FC<VideoProps> = ({
   const thumbnailUrl = videoId
     ? `https://img.youtube.com/vi/${videoId}/${thumbnailQuality}.jpg`
     : "";
+
   const embedUrl = videoId
     ? `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&controls=0&mute=1&playlist=${videoId}&enablejsapi=1`
     : "";
@@ -62,28 +65,42 @@ const Video: React.FC<VideoProps> = ({
 
   return (
     <div
-      className={`relative aspect-video w-full ${className} rounded-lg overflow-hidden`}
+      className={cn(
+        "relative aspect-video w-full rounded-lg overflow-hidden bg-neutral-900/50 place-content-center",
+        className
+      )}
     >
-      {isLoading && thumbnailUrl && (
+      {!thumbnailUrl && isLoading && (
+        <Loader2 className="size-16 mx-auto text-white animate-spin" />
+      )}
+      {thumbnailUrl && (
         <Image
           src={thumbnailUrl}
           alt="Video thumbnail"
           fill
-          className="object-cover"
+          className="object-cover size-full "
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       )}
-      <iframe
-        ref={videoRef}
-        src={embedUrl}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className={`absolute top-0 left-0 w-full h-full ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
-        style={{ transition: "opacity 0.3s ease-in-out" }}
-      />
+      <div
+        className={cn(
+          "absolute top-0 left-0 transition-opacity w-full h-full opacity-0",
+          {
+            "opacity-100": !isLoading,
+          }
+        )}
+      >
+        <iframe
+          ref={videoRef}
+          src={embedUrl}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ transition: "opacity 0.3s ease-in-out" }}
+          className="size-full"
+          onLoad={() => setIsLoading(false)}
+        />
+      </div>
     </div>
   );
 };

@@ -19,12 +19,13 @@ export const ParallaxScroll = ({
   ]);
 
   useEffect(() => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
+    const container = containerRef.current;
+    if (container) {
+      const rect = container.getBoundingClientRect();
       const distanceFromTop = rect.top + window.scrollY;
       setOffset([`${distanceFromTop}px start`, "end end"]);
     }
-  }, []);
+  }, [containerRef.current]);
 
   const { scrollYProgress } = useScroll({
     offset: offset,
